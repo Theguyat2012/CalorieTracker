@@ -3,9 +3,9 @@ import { View, Platform, SafeAreaView, StatusBar, StyleSheet, Text } from 'react
 
 const AppBar = () => {
     return (
-            <SafeAreaView style={[styles.container, styles.appBar]}>
-                <StatusBar style={styles.statusBar}/>
-            </SafeAreaView>
+        <SafeAreaView style={[styles.container, styles.appBar]}>
+            <StatusBar style={styles.statusBar}/>
+        </SafeAreaView>
     );
 }
 

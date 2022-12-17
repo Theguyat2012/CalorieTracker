@@ -7,9 +7,9 @@ import Equation from './components/Equation';
 
 export default function App() {
   return (
-    <View>
-      <AppBar />
-      <Equation />
-    </View>
+      <View>
+        <AppBar />
+        <Equation />
+      </View>
   );
 }
