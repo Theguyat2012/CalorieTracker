@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
+
+import AddCalories from './AddCalories';
 
 
 const Equation = () => {
     const [variables, setVariables] = useState([0, 0, 0, 0]);
+    const [visible, setVisible] = useState(false);
+
+    const [openType, setOpenType] = useState(false);
+    const [type, setType] =  useState(null);
+    const [items, setItems] = useState([
+      {label: 'Consumed', value: 'Consumed'},
+      {label: 'Burned', value: 'Burned'}
+    ]);
 
     const placeholders = ['Limit', 'Consumed', 'Burned', 'Remaining'];
     const date = new Date();
@@ -48,14 +58,15 @@ const Equation = () => {
                 </View>
             </View>
             <View style={ {alignItems: 'center'} }>
-                <AddCaloriesButton title='Consumed' />
-                <AddCaloriesButton title='Burned' />
+                <AddCaloriesButton open={() => {setVisible(true); setType(placeholders[1])}} title={placeholders[1]} />
+                <AddCaloriesButton open={() => {setVisible(true); setType(placeholders[2])}} title={placeholders[2]} />
             </View>
             <View>
                 <TextInput style={ {borderWidth: 1, margin: 5, padding: 5} } placeholder={placeholders[0]} keyboardType='numeric' returnKeyType='done' onChangeText={text => updateVariables(0, parseInt(text))}/>
                 <TextInput style={ {borderWidth: 1, margin: 5, padding: 5} } placeholder={placeholders[1]} keyboardType='numeric' returnKeyType='done' onChangeText={text => updateVariables(1, parseInt(text))} />
                 <TextInput style={ {borderWidth: 1, margin: 5, padding: 5} } placeholder={placeholders[2]} keyboardType='numeric' returnKeyType='done' onChangeText={text => updateVariables(2, parseInt(text))} />
             </View>
+            <AddCalories visible={visible} openType={openType} setOpenType={setOpenType} type={type} setType={setType} items={items} setItems={setItems} close={() => setVisible(false)} />
         </View>
     );
 }
@@ -72,7 +83,7 @@ const Variable = (props) => {
 const AddCaloriesButton = (props) => {
     return (
         <View style={ {width: '98%', marginTop: '3%'} }>
-            <TouchableOpacity style={ {flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#3399FF', borderRadius: 40} }>
+            <TouchableOpacity onPress={props.open} style={ {flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#3399FF', borderRadius: 40} }>
                 <Text style={ {alignSelf: 'center', paddingStart: '4%'} }>{props.title}</Text>
                 <Entypo name="circle-with-plus" size={40} color="#FFFFFF" />
             </TouchableOpacity>
