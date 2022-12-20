@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
 
 
-const AddCalories = (props) => {
+const AddCaloriesModal = (props) => {
     return (
         <Modal animationType='slide' visible={props.visible} transparent={true}>
             <View style={styles.modalWrapper}>
                 <View style={styles.modalView }>
-                    <View style={ {flexDirection: 'row', justifyContent: 'space-between', width: '100%', marginBottom: 5, paddingBottom: 5, borderBottomWidth: 1} }>
-                        <Text style={ {alignSelf: 'center'} }>Add Calories</Text>
+                    <View style={styles.headerWrapper}>
+                        <Text>Add Calories</Text>
                         <TouchableOpacity onPress={() => {props.close(true); props.setOpenType(false)}}>
                             <AntDesign name="closecircle" size={40} color="red" />
                         </TouchableOpacity>
                     </View>
-                    <View style={ {elevation: 1, zIndex: 1} }>
+                    <View style={styles.dropDownOptions}>
                         <Text>Type</Text>
                         <DropDownPicker
                             open={props.openType}
@@ -28,13 +28,13 @@ const AddCalories = (props) => {
                             dropDownDirection="BOTTOM"
                         />
                     </View>
-                    <View style={ {flex: 1, width: '100%', justifyContent: 'space-evenly'} }>
+                    <View style={styles.inputWrapper}>
                         <Input placeholder='Title' keyboardType='default'/>
                         <Input placeholder='Calories' keyboardType='numeric'/>
                     </View>
-                    <View style={ {width: '98%', justifyContent: 'flex-end', marginTop: '5%'} }>
-                        <View style={ {backgroundColor: '#3399FF', borderRadius: 20} }>
-                            <Button title='Add' color='white'/>
+                    <View style={ styles.addButtonWrapper }>
+                        <View style={ styles.addButtonContainer }>
+                            <Button title='Add' color='white' />
                         </View>
                     </View>
                 </View>
@@ -72,10 +72,37 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         width: '90%',
     },
+    headerWrapper: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        marginBottom: 5,
+        paddingBottom: 5,
+        borderBottomWidth: 1,
+    },
+    dropDownOptions: {
+        elevation: 1,
+        zIndex: 1,
+    },
     input: {
         borderWidth: 1,
         lineHeight: '40%',
     },
+    inputWrapper: {
+        flex: 1,
+        width: '100%',
+        justifyContent: 'space-evenly',
+    },
+    addButtonWrapper: {
+        width: '98%',
+        justifyContent: 'flex-end',
+        marginTop: '5%',
+    },
+    addButtonContainer: {
+        backgroundColor: '#3399FF',
+        borderRadius: 20,
+    },
 });
 
-export default AddCalories;
+export default AddCaloriesModal;

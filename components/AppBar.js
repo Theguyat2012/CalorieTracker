@@ -1,4 +1,4 @@
-import { View, Platform, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
 
 const AppBar = () => {

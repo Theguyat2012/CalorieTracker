@@ -1,15 +1,15 @@
 // React Native
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 // Components
 import AppBar from './components/AppBar';
-import Equation from './components/Equation';
+import Main from './components/Main';
 
 export default function App() {
   return (
       <ScrollView>
         <AppBar />
-        <Equation />
+        <Main />
       </ScrollView>
   );
 }
