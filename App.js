@@ -7,9 +7,11 @@ import Main from './components/Main';
 
 export default function App() {
   return (
+    <>
+      <AppBar />
       <ScrollView>
-        <AppBar />
         <Main />
       </ScrollView>
+    </>
   );
 }

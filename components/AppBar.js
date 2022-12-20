@@ -1,27 +1,29 @@
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 
 
 const AppBar = () => {
     return (
-        <SafeAreaView style={[styles.container, styles.appBar]}>
-            <StatusBar style={styles.statusBar}/>
-        </SafeAreaView>
+        <View>
+            <StatusBar style={styles.statusBar} barStyle='dark-content'/>
+            <View style={styles.appBar} />
+        </View>
     );
 }
 
 const statusBarHeight = StatusBar.currentHeight;
+const appBarHeight = 22;
 
 const styles = StyleSheet.create ({
     container: {
         flex: 1,
     },
     statusbar: {
-        backgroundColor: '#000000',
+        backgroundColor: '#3399FF',
         height: statusBarHeight,
     },
     appBar: {
-        backgroundColor: '#000000',
-    },
+        height: appBarHeight,
+    }
 });
 
 export default AppBar;
