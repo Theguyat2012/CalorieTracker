@@ -61,11 +61,6 @@ const Equation = () => {
                 <AddCaloriesButton open={() => {setVisible(true); setType(placeholders[1])}} title={placeholders[1]} />
                 <AddCaloriesButton open={() => {setVisible(true); setType(placeholders[2])}} title={placeholders[2]} />
             </View>
-            <View>
-                <TextInput style={ {borderWidth: 1, margin: 5, padding: 5} } placeholder={placeholders[0]} keyboardType='numeric' returnKeyType='done' onChangeText={text => updateVariables(0, parseInt(text))}/>
-                <TextInput style={ {borderWidth: 1, margin: 5, padding: 5} } placeholder={placeholders[1]} keyboardType='numeric' returnKeyType='done' onChangeText={text => updateVariables(1, parseInt(text))} />
-                <TextInput style={ {borderWidth: 1, margin: 5, padding: 5} } placeholder={placeholders[2]} keyboardType='numeric' returnKeyType='done' onChangeText={text => updateVariables(2, parseInt(text))} />
-            </View>
             <AddCalories visible={visible} openType={openType} setOpenType={setOpenType} type={type} setType={setType} items={items} setItems={setItems} close={() => setVisible(false)} />
         </View>
     );
