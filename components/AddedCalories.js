@@ -5,8 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 const AddedCalories = (props) => {
     return (
         <View style={styles.addCalories}>
-            <Text>Rice and tuna</Text>
-            <Text>460</Text>
+            <Text>{props.title}</Text>
+            <Text>{props.calories}</Text>
         </View>
     );
 }

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
 
 
 const AddCaloriesModal = (props) => {
+    const [title, setTitle] = useState('');
+    const [calories, setCalories] = useState('');
+
     return (
         <Modal animationType='slide' visible={props.visible} transparent={true}>
             <View style={styles.modalWrapper}>
@@ -29,12 +32,16 @@ const AddCaloriesModal = (props) => {
                         />
                     </View>
                     <View style={styles.inputWrapper}>
-                        <Input placeholder='Title' keyboardType='default'/>
-                        <Input placeholder='Calories' keyboardType='numeric'/>
+                        <Input placeholder='Title' keyboardType='default' setter={setTitle}/>
+                        <Input placeholder='Calories' keyboardType='numeric' setter={setCalories}/>
                     </View>
                     <View style={ styles.addButtonWrapper }>
                         <View style={ styles.addButtonContainer }>
-                            <Button title='Add' color='white' />
+                            <Button
+                                title='Add'
+                                color='white'
+                                onPress={() => props.setAdded(props.added.concat([[props.type, title, parseInt(calories)]]))}
+                            />
                         </View>
                     </View>
                 </View>
@@ -47,7 +54,7 @@ const Input = (props) => {
     return (
         <View>
             <Text>{props.placeholder}</Text>
-            <TextInput style={styles.input} keyboardType={props.keyboardType} returnKeyType='done' />
+            <TextInput style={styles.input} keyboardType={props.keyboardType} returnKeyType='done' onChangeText={props.setter}/>
         </View>
     );
 }
