@@ -17,7 +17,9 @@ const SetLimitModal = (props) => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.inputWrapper}>
-                        <TextInput style={styles.limitInput} onChangeText={(text) => setValue(parseInt(text))} />
+                        <View style={styles.inputContainer}>
+                            <TextInput style={styles.limitInput} onChangeText={(text) => setValue(parseInt(text))} />
+                        </View>
                         <View style={ styles.addButtonWrapper }>
                             <View style={ styles.addButtonContainer }>
                                 <Button
@@ -66,15 +68,20 @@ const styles = StyleSheet.create({
     inputWrapper: {
         flex: 1,
         width: '100%',
-        justifyContent: 'space-between'
+    },
+    inputContainer: {
+        justifyContent: 'center',
+        flex: 2,
+        width: '100%',
     },
     limitInput: {
         borderWidth: 1,
+        height: 40,
+        width: '100%',
     },
     addButtonWrapper: {
-        width: '98%',
+        width: '100%',
         justifyContent: 'flex-end',
-        marginTop: '5%',
     },
     addButtonContainer: {
         backgroundColor: '#3399FF',

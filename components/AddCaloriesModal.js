@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        lineHeight: '40%',
+        height: 40,
     },
     inputWrapper: {
         flex: 1,
