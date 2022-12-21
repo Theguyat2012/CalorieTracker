@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-const Equation = () => {
-    const [variables, setVariables] = useState([0, 0, 0, 0]);
-
+const Equation = (props) => {
     const placeholders = ['Limit', 'Consumed', 'Burned', 'Remaining'];
 
     return (
@@ -13,13 +11,13 @@ const Equation = () => {
                 <Text>Calorie Tracker</Text>
             </View>
             <View style={styles.equationWrapper}>
-                <Variable number={variables[0]} word={placeholders[0]} />
+                <Variable number={props.limit} word={placeholders[0]} />
                 <Text>-</Text>
-                <Variable number={variables[1]} word={placeholders[1]} />
+                <Variable number={getCalories(props.added, placeholders[1])} word={placeholders[1]} />
                 <Text>+</Text>
-                <Variable number={variables[2]} word={placeholders[2]} />
+                <Variable number={getCalories(props.added, placeholders[2])} word={placeholders[2]} />
                 <Text>=</Text>
-                <Variable number={variables[3]} word={placeholders[3]} />
+                <Variable number={getRemaining(props.added)} word={placeholders[3]} />
             </View>
         </View>
     );
@@ -32,6 +30,36 @@ const Variable = (props) => {
             <Text>{props.word}</Text>
         </View>
     );
+}
+
+const getCalories = (added, type) => {
+    let value = 0;
+
+    if (added) {
+        for (let i = 0; i<added.length; i++) {
+            if (added[i][0] === type) {
+                value += added[i][2];
+            }
+        }
+    }
+
+    return value;
+}
+
+const getRemaining = (added) => {
+    let remaining = 0;
+
+    if (added) {
+        for (let i=0; i<added.length; i++) {
+            if (added[i][0] === 'Consumed') {
+                remaining -= added[i][2];
+            } else {
+                remaining += added[i][2];
+            }
+        }
+    }
+
+    return remaining;
 }
 
 const styles = StyleSheet.create({

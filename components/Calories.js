@@ -6,7 +6,7 @@ import AddCaloriesModal from "./AddCaloriesModal";
 import AddedCalories from "./AddedCalories";
 
 
-const Calories = () => {
+const Calories = (props) => {
     const [visible, setVisible] = useState(false);
     const [openType, setOpenType] = useState(false);
     const [type, setType] =  useState(null);
@@ -14,15 +14,14 @@ const Calories = () => {
       {label: 'Consumed', value: 'Consumed'},
       {label: 'Burned', value: 'Burned'}
     ]);
-    const [added, setAdded] = useState([]);
 
     return (
         <>
             <View style={styles.calories}>
-                <AddCaloriesButton title='Consumed'open={() => {setVisible(true), setType('Consumed')}} />
-                {renderCalories(added, 'Consumed')}
+                <AddCaloriesButton title='Consumed' open={() => {setVisible(true), setType('Consumed')}} />
+                {renderCalories(props.added, 'Consumed')}
                 <AddCaloriesButton title='Burned' open={() => {setVisible(true), setType('Burned')}} />
-                {renderCalories(added, 'Burned')}
+                {renderCalories(props.added, 'Burned')}
             </View>
             <AddCaloriesModal
                 visible={visible}
@@ -32,8 +31,8 @@ const Calories = () => {
                 items={items}
                 setItems={setItems}
                 close={() => setVisible(false)}
-                added={added}
-                setAdded={setAdded}
+                added={props.added}
+                setAdded={props.setAdded}
             />
         </>
     );
