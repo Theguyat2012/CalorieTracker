@@ -9,7 +9,7 @@ const AddCaloriesButton = (props) => {
         <View style={styles.wrapper}>
             <TouchableOpacity onPress={props.open} style={styles.button}>
                 <Text style={styles.text}>{props.title}</Text>
-                <Entypo name="circle-with-plus" size='40%' color="#FFFFFF" />
+                <Entypo name="circle-with-plus" size={props.size} color={props.color} />
             </TouchableOpacity>
         </View>
     );

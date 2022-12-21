@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import AddCaloriesButton from "./AddCaloriesButton";
 import AddCaloriesModal from "./AddCaloriesModal";
 import AddedCalories from "./AddedCalories";
+import SetLimitModal from "./SetLimitModal";
 
 
 const Calories = (props) => {
-    const [visible, setVisible] = useState(false);
+    const [visibleLimit, setVisibleLimt] = useState(false);
+    const [visibleAddCalories, setVisibleAddCalories] = useState(false);
     const [openType, setOpenType] = useState(false);
     const [type, setType] =  useState(null);
     const [items, setItems] = useState([
@@ -18,21 +20,26 @@ const Calories = (props) => {
     return (
         <>
             <View style={styles.calories}>
-                <AddCaloriesButton title='Consumed' open={() => {setVisible(true), setType('Consumed')}} />
+                <AddCaloriesButton title='Set Limit' size='40%' color='#3399FF' open={() => setVisibleLimt()} />
+                <AddCaloriesButton title='Consumed' size='40%' color='white' open={() => {setVisibleAddCalories(true), setType('Consumed')}} />
                 {renderCalories(props.added, 'Consumed')}
-                <AddCaloriesButton title='Burned' open={() => {setVisible(true), setType('Burned')}} />
+                <AddCaloriesButton title='Burned' size='40%' color='white' open={() => {setVisibleAddCalories(true), setType('Burned')}} />
                 {renderCalories(props.added, 'Burned')}
             </View>
             <AddCaloriesModal
-                visible={visible}
+                visible={visibleAddCalories}
                 openType={openType}
                 setOpenType={setOpenType}
                 type={type} setType={setType}
                 items={items}
                 setItems={setItems}
-                close={() => setVisible(false)}
+                close={() => setVisibleAddCalories(false)}
                 added={props.added}
                 setAdded={props.setAdded}
+            />
+            <SetLimitModal
+                visible={visibleLimit}
+                close={() => setVisibleLimt(false)}
             />
         </>
     );
