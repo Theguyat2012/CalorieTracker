@@ -40,6 +40,8 @@ const Calories = (props) => {
             <SetLimitModal
                 visible={visibleLimit}
                 close={() => setVisibleLimt(false)}
+                limit={props.limit}
+                setLimit={props.setLimit}
             />
         </>
     );

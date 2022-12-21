@@ -17,7 +17,7 @@ const Equation = (props) => {
                 <Text>+</Text>
                 <Variable number={getCalories(props.added, placeholders[2])} word={placeholders[2]} />
                 <Text>=</Text>
-                <Variable number={getRemaining(props.added)} word={placeholders[3]} />
+                <Variable number={getRemaining(props.added, props.limit)} word={placeholders[3]} />
             </View>
         </View>
     );
@@ -46,7 +46,7 @@ const getCalories = (added, type) => {
     return value;
 }
 
-const getRemaining = (added) => {
+const getRemaining = (added, limit) => {
     let remaining = 0;
 
     if (added) {
@@ -59,7 +59,7 @@ const getRemaining = (added) => {
         }
     }
 
-    return remaining;
+    return limit + remaining;
 }
 
 const styles = StyleSheet.create({

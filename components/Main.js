@@ -6,14 +6,14 @@ import Calories from "./Calories";
 
 
 const Main = () => {
-    const limit = 0;
+    const [limit, setLimit] = useState(0);
     const [added, setAdded] = useState([]);
 
     return (
         <>
-            <Equation limit={limit} added={added}/>
+            <Equation limit={limit} added={added} />
             <EquationDate />
-            <Calories added={added} setAdded={setAdded} />
+            <Calories added={added} setAdded={setAdded} limit={limit} setLimit={setLimit}/>
         </>
     );
 }
