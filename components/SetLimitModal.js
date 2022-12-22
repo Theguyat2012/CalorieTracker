@@ -18,7 +18,7 @@ const SetLimitModal = (props) => {
                     </View>
                     <View style={styles.inputWrapper}>
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.limitInput} onChangeText={(text) => setValue(parseInt(text))} />
+                            <TextInput style={styles.limitInput} onChangeText={(text) => setValue(parseInt(text))} keyboardType='numeric' returnKeyType='done'/>
                         </View>
                         <View style={ styles.addButtonWrapper }>
                             <View style={ styles.addButtonContainer }>

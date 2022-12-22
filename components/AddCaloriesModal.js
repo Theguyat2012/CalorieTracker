@@ -40,7 +40,7 @@ const AddCaloriesModal = (props) => {
                             <Button
                                 title='Add'
                                 color='white'
-                                onPress={() => {props.setAdded(props.added.concat([[props.type, title, parseInt(calories)]])); props.close(true); props.setOpenType(false);}}
+                                onPress={() => {calories ? props.setAdded(props.added.concat([[props.type, title, parseInt(calories)]])) : null; props.close(true); props.setOpenType(false);}}
                             />
                         </View>
                     </View>
