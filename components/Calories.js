@@ -22,9 +22,9 @@ const Calories = (props) => {
             <View style={styles.calories}>
                 <AddCaloriesButton title='Set Limit' size='40%' color='#3399FF' open={() => setVisibleLimt()} />
                 <AddCaloriesButton title='Consumed' size='40%' color='white' open={() => {setVisibleAddCalories(true), setType('Consumed')}} />
-                {renderCalories(props.added, 'Consumed')}
+                {renderCalories(props.added, props.setAdded, 'Consumed')}
                 <AddCaloriesButton title='Burned' size='40%' color='white' open={() => {setVisibleAddCalories(true), setType('Burned')}} />
-                {renderCalories(props.added, 'Burned')}
+                {renderCalories(props.added, props.setAdded, 'Burned')}
             </View>
             <AddCaloriesModal
                 visible={visibleAddCalories}
@@ -47,10 +47,10 @@ const Calories = (props) => {
     );
 }
 
-const renderCalories = (added, type) => {
+const renderCalories = (added, setAdded, type) => {
     return (
         <>
-            {added.map((element, index) => element[0] === type ? <AddedCalories key={index} title={element[1]} calories={element[2]}/> : null)}
+            {added.map((element, index) => element[0] === type ? <AddedCalories key={index} index={index} title={element[1]} calories={element[2]} added={added} setAdded={setAdded} /> : null)}
         </>
     );
 }
@@ -58,6 +58,10 @@ const renderCalories = (added, type) => {
 const styles = StyleSheet.create({
     calories: {
         alignItems: 'center',
+    },
+    bigWrap: {
+        backgroundColor: 'yellow',
+        width: '98%',
     },
 });
 
