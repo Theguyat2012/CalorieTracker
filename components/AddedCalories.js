@@ -3,10 +3,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 
+let row = [];
+
 const AddedCalories = (props) => {
+
     return (
-        <View style={styles.addCaloriesWrapper}>
-            <Swipeable renderRightActions={() => <RightActions index={props.index} added={props.added} setAdded={props.setAdded} />}>
+        <View key={props.index} style={styles.addCaloriesWrapper}>
+            <Swipeable ref={ref => row[props.index] = ref} renderRightActions={() => <RightActions index={props.index} added={props.added} setAdded={props.setAdded} />}>
                 <View style={styles.addCalories}>
                     <Text>{props.title}</Text>
                     <Text>{props.calories}</Text>
@@ -18,7 +21,7 @@ const AddedCalories = (props) => {
 
 const RightActions = (props) => {
     return (
-        <TouchableOpacity style={styles.remove} onPress={() => remove(props.index, props.added, props.setAdded)}>
+        <TouchableOpacity style={styles.remove} onPress={() => remove(props.index, props.added, props.setAdded, props.ref)}>
             <Text>Remove</Text>
         </TouchableOpacity>
     );
@@ -31,12 +34,18 @@ const remove = (index, added, setAdded) => {
             array.push(added[i]);
         }
     }
+
+    if (row[index]) {
+        row[index].close();
+    }
+
     setAdded(array);
 }
 
 const styles = StyleSheet.create({
     addCaloriesWrapper: {
         width: '98%',
+        marginTop: '2%',
     },
     addCalories: {
         width: '100%',
