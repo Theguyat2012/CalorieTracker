@@ -25,7 +25,7 @@ const SetLimitModal = (props) => {
                                 <Button
                                     title='Set New Limit'
                                     color='white'
-                                    onPress={() => {props.setLimit(value); props.close(true);}}
+                                    onPress={() => {props.setLimit(value); props.close(true); props.setData(props.limitKey, value);}}
                                 />
                             </View>
                         </View>

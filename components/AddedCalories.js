@@ -9,7 +9,7 @@ const AddedCalories = (props) => {
 
     return (
         <View key={props.index} style={styles.addCaloriesWrapper}>
-            <Swipeable ref={ref => row[props.index] = ref} renderRightActions={() => <RightActions index={props.index} added={props.added} setAdded={props.setAdded} />}>
+            <Swipeable ref={ref => row[props.index] = ref} renderRightActions={() => <RightActions index={props.index} added={props.added} setAdded={props.setAdded} addedKey={props.addedKey} setData={props.setData} />}>
                 <View style={styles.addCalories}>
                     <Text>{props.title}</Text>
                     <Text>{props.calories}</Text>
@@ -21,13 +21,13 @@ const AddedCalories = (props) => {
 
 const RightActions = (props) => {
     return (
-        <TouchableOpacity style={styles.remove} onPress={() => remove(props.index, props.added, props.setAdded, props.ref)}>
+        <TouchableOpacity style={styles.remove} onPress={() => {remove(props.index, props.added, props.setAdded, props.setData, props.addedKey);}}>
             <Text>Remove</Text>
         </TouchableOpacity>
     );
 }
 
-const remove = (index, added, setAdded) => {
+const remove = (index, added, setAdded, setData, addedKey) => {
     let array = [];
     for (let i=0; i<added.length; i++) {
         if (i != index) {
@@ -40,6 +40,7 @@ const remove = (index, added, setAdded) => {
     }
 
     setAdded(array);
+    setData(addedKey, array);
 }
 
 const styles = StyleSheet.create({
