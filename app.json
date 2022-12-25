@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CalorieTracker",
-    "slug": "CalorieTracker",
+    "slug": "cal-track",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,13 +12,15 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/a37b644b-630a-46bd-af6d-5998658087a5"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aleton.caltrack"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +30,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a37b644b-630a-46bd-af6d-5998658087a5"
+      }
+    },
+    "owner": "aleton",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
