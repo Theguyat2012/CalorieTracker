@@ -7,15 +7,6 @@ export default function AddCaloriesModal({visible, openType, setOpenType, type, 
     const [title, setTitle] = useState('');
     const [calories, setCalories] = useState('');
 
-    const Input = ({placeholder, keyboardType, setter}) => {
-        return (
-            <View>
-                <Text>{placeholder}</Text>
-                <TextInput style={styles.input} keyboardType={keyboardType} returnKeyType='done' onChangeText={setter}/>
-            </View>
-        );
-    }
-
     return (
         <Modal animationType='slide' visible={visible} transparent={true}>
             <View style={styles.modalWrapper}>
@@ -49,7 +40,8 @@ export default function AddCaloriesModal({visible, openType, setOpenType, type, 
                                 title='Add'
                                 color='white'
                                 onPress={() => {
-                                    calories ? setAdded(added.concat([[type, title, parseInt(calories)]])) : null; close(true);
+                                    calories ? setAdded(added.concat([[type, title, parseInt(calories)]])) : null;
+                                    close(true);
                                     setOpenType(false);
                                     setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
                                 }}
@@ -59,6 +51,15 @@ export default function AddCaloriesModal({visible, openType, setOpenType, type, 
                 </View>
             </View>
         </Modal>
+    );
+}
+
+const Input = ({placeholder, keyboardType, setter}) => {
+    return (
+        <View>
+            <Text>{placeholder}</Text>
+            <TextInput style={styles.input} keyboardType={keyboardType} returnKeyType='done' onChangeText={setter}/>
+        </View>
     );
 }
 

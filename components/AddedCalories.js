@@ -4,29 +4,17 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 
 let row = [];
 
-export default function AddedCalories({key, title, calories, added, setAdded, addedKey, setData}) {
+export default function AddedCalories({index, title, calories, added, setAdded, addedKey, setData}) {
 
-    const LeftActions = ({index, added, setAdded, setData, addedKey}) => {
+    const RightActions = () => {
         return (
-            <TouchableOpacity style={styles.edit} onPress={() => {edit(index, added, setAdded, setData, addedKey);}}>
-                <Text style={styles.actionText}>Edit</Text>
-            </TouchableOpacity>
-        );
-    }
-
-    const edit = (index, added, setAdded, setData, addedKey) => {
-        
-    }
-
-    const RightActions = ({index, added, setAdded, setData, addedKey}) => {
-        return (
-            <TouchableOpacity style={styles.remove} onPress={() => {remove(index, added, setAdded, setData, addedKey);}}>
+            <TouchableOpacity style={styles.remove} onPress={remove}>
                 <Text style={styles.actionText}>Remove</Text>
             </TouchableOpacity>
         );
     }
 
-    const remove = (index, added, setAdded, setData, addedKey) => {
+    const remove = () => {
         let array = [];
         for (let i=0; i<added.length; i++) {
             if (i != index) {
@@ -43,24 +31,11 @@ export default function AddedCalories({key, title, calories, added, setAdded, ad
     }
 
     return (
-        <View key={key} style={styles.addCaloriesWrapper}>
+        <View key={index} style={styles.addCaloriesWrapper}>
             <Swipeable
-                ref={ref => row[key] = ref}
-                renderLeftActions={
-                    () => <LeftActions
-                        index={key}
-                        added={added}
-                        setAdded={setAdded}
-                        addedKey={addedKey}
-                        setData={setData} />
-                }
+                ref={ref => row[index] = ref}
                 renderRightActions={
-                    () => <RightActions
-                        index={key}
-                        added={added}
-                        setAdded={setAdded}
-                        addedKey={addedKey}
-                        setData={setData} />
+                    () => <RightActions />
                 }>
                 <View style={styles.addCalories}>
                     <Text>{title}</Text>

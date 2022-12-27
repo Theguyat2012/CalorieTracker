@@ -19,7 +19,7 @@ export default function Calories({setData, addedKey, added, setAdded, limitKey, 
     const renderCalories = (added, setAdded, type, addedKey, setData) => {
         return (
             <>
-                {added.map((element, index) => element[0] === type ? <AddedCalories key={index} title={element[1]} calories={element[2]} added={added} setAdded={setAdded} addedKey={addedKey} setData={setData} /> : null)}
+                {added.map((element, index) => element[0] === type ? <AddedCalories key={index} index={index} title={element[1]} calories={element[2]} added={added} setAdded={setAdded} addedKey={addedKey} setData={setData} /> : null)}
             </>
         );
     }
