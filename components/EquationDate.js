@@ -2,7 +2,6 @@ import React from "react";
 
 import { StyleSheet, Text, View } from 'react-native';
 
-
 export default function EquationDate() {
     const date = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

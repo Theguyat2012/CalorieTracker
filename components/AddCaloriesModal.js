@@ -3,12 +3,11 @@ import { Button, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } fr
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
 
-
 export default function AddCaloriesModal({visible, openType, setOpenType, type, setType, items, setItems, close, added, setAdded, addedKey, setData}) {
     const [title, setTitle] = useState('');
     const [calories, setCalories] = useState('');
 
-    const Input = (placeholder, keyboardType, setter) => {
+    const Input = ({placeholder, keyboardType, setter}) => {
         return (
             <View>
                 <Text>{placeholder}</Text>
