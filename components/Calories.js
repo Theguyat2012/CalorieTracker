@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useState } from "react";
+import { View, StyleSheet } from 'react-native';
 
 import AddCaloriesButton from "./AddCaloriesButton";
 import AddCaloriesModal from "./AddCaloriesModal";
 import AddedCalories from "./AddedCalories";
 import SetLimitModal from "./SetLimitModal";
 
-
-const Calories = (props) => {
-    const [visibleLimit, setVisibleLimt] = useState(false);
+export default function Calories({setData, addedKey, added, setAdded, limitKey, limit, setLimit}) {
+    const [visibleLimit, setVisibleLimit] = useState(false);
     const [visibleAddCalories, setVisibleAddCalories] = useState(false);
     const [openType, setOpenType] = useState(false);
     const [type, setType] =  useState(null);
@@ -17,44 +16,47 @@ const Calories = (props) => {
       {label: 'Burned', value: 'Burned'}
     ]);
 
+    const renderCalories = (added, setAdded, type, addedKey, setData) => {
+        return (
+            <>
+                {added.map((element, index) => element[0] === type ? <AddedCalories key={index} title={element[1]} calories={element[2]} added={added} setAdded={setAdded} addedKey={addedKey} setData={setData} /> : null)}
+            </>
+        );
+    }
+
     return (
         <>
             <View style={styles.calories}>
-                <AddCaloriesButton title='Set Limit' size='40%' color='#3399FF' open={() => setVisibleLimt()} />
-                <AddCaloriesButton title='Consumed' size='40%' color='white' open={() => {setVisibleAddCalories(true), setType('Consumed')}} />
-                {renderCalories(props.added, props.setAdded, 'Consumed', addedKey=props.addedKey, setData=props.setData)}
-                <AddCaloriesButton title='Burned' size='40%' color='white' open={() => {setVisibleAddCalories(true), setType('Burned')}} />
-                {renderCalories(props.added, props.setAdded, 'Burned', addedKey=props.addedKey, setData=props.setData)}
+                <AddCaloriesButton add={false} title='Set Limit' onOpen={() => setVisibleLimit()} />
+                <AddCaloriesButton add={true} title='Consumed' onOpen={() => {setVisibleAddCalories(true), setType('Consumed')}} />
+                {renderCalories(added, setAdded, 'Consumed', addedKey=addedKey, setData=setData)}
+                <AddCaloriesButton add={true} title='Burned' onOpen={() => {setVisibleAddCalories(true), setType('Burned')}} />
+                {renderCalories(added, setAdded, 'Burned', addedKey=addedKey, setData=setData)}
             </View>
+
             <AddCaloriesModal
                 visible={visibleAddCalories}
                 openType={openType}
                 setOpenType={setOpenType}
-                type={type} setType={setType}
+                type={type}
+                setType={setType}
                 items={items}
                 setItems={setItems}
                 close={() => setVisibleAddCalories(false)}
-                added={props.added}
-                setAdded={props.setAdded}
-                addedKey={props.addedKey}
-                setData={props.setData}
+                added={added}
+                setAdded={setAdded}
+                addedKey={addedKey}
+                setData={setData}
             />
+
             <SetLimitModal
                 visible={visibleLimit}
-                close={() => setVisibleLimt(false)}
-                limit={props.limit}
-                setLimit={props.setLimit}
-                limitKey={props.limitKey}
-                setData={props.setData}
+                close={() => setVisibleLimit(false)}
+                limit={limit}
+                setLimit={setLimit}
+                limitKey={limitKey}
+                setData={setData}
             />
-        </>
-    );
-}
-
-const renderCalories = (added, setAdded, type, addedKey, setData) => {
-    return (
-        <>
-            {added.map((element, index) => element[0] === type ? <AddedCalories key={index} index={index} title={element[1]} calories={element[2]} added={added} setAdded={setAdded} addedKey={addedKey} setData={setData} /> : null)}
         </>
     );
 }
@@ -68,5 +70,3 @@ const styles = StyleSheet.create({
         width: '98%',
     },
 });
-
-export default Calories;

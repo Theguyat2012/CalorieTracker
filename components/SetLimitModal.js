@@ -2,30 +2,38 @@ import React, { useState } from 'react';
 import { Button, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-
-const SetLimitModal = (props) => {
-    const [value, setValue] = useState(props.limit);
+export default function SetLimitModal({ visible, close, limit, setLimit, limitKey, setData }) {
+    const [value, setValue] = useState(limit);
 
     return (
-        <Modal animationType='slide' visible={props.visible} transparent={true}>
+        <Modal animationType='slide' visible={visible} transparent={true}>
             <View style={styles.modalWrapper}>
                 <View style={styles.modalView }>
                     <View style={styles.headerWrapper}>
                         <Text>New Limit</Text>
-                        <TouchableOpacity onPress={() => props.close(true)}>
+                        <TouchableOpacity onPress={() => close(true)}>
                             <AntDesign name="closecircle" size={40} color="red" />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.inputWrapper}>
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.limitInput} onChangeText={(text) => setValue(parseInt(text))} keyboardType='numeric' returnKeyType='done'/>
+                            <TextInput
+                                style={styles.limitInput}
+                                onChangeText={(text) => setValue(parseInt(text))}
+                                keyboardType='numeric'
+                                returnKeyType='done'
+                            />
                         </View>
                         <View style={ styles.addButtonWrapper }>
                             <View style={ styles.addButtonContainer }>
                                 <Button
                                     title='Set New Limit'
                                     color='white'
-                                    onPress={() => {props.setLimit(value); props.close(true); props.setData(props.limitKey, value);}}
+                                    onPress={() => {
+                                        setLimit(value);
+                                        close(true);
+                                        setData(limitKey, value);
+                                    }}
                                 />
                             </View>
                         </View>
@@ -88,5 +96,3 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
 });
-
-export default SetLimitModal;

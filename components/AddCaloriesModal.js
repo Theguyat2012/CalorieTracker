@@ -4,58 +4,62 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
 
 
-const AddCaloriesModal = (props) => {
+export default function AddCaloriesModal({visible, openType, setOpenType, type, setType, items, setItems, close, added, setAdded, addedKey, setData}) {
     const [title, setTitle] = useState('');
     const [calories, setCalories] = useState('');
 
+    const Input = (placeholder, keyboardType, setter) => {
+        return (
+            <View>
+                <Text>{placeholder}</Text>
+                <TextInput style={styles.input} keyboardType={keyboardType} returnKeyType='done' onChangeText={setter}/>
+            </View>
+        );
+    }
+
     return (
-        <Modal animationType='slide' visible={props.visible} transparent={true}>
+        <Modal animationType='slide' visible={visible} transparent={true}>
             <View style={styles.modalWrapper}>
                 <View style={styles.modalView }>
                     <View style={styles.headerWrapper}>
                         <Text>Add Calories</Text>
-                        <TouchableOpacity onPress={() => {props.close(true); props.setOpenType(false)}}>
+                        <TouchableOpacity onPress={() => {close(true); setOpenType(false)}}>
                             <AntDesign name="closecircle" size={40} color="red" />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.dropDownOptions}>
                         <Text>Type</Text>
                         <DropDownPicker
-                            open={props.openType}
-                            value={props.type}
-                            items={props.items}
-                            setOpen={props.setOpenType}
-                            setValue={props.setType}
-                            setItems={props.setItems}
+                            open={openType}
+                            value={type}
+                            items={items}
+                            setOpen={setOpenType}
+                            setValue={setType}
+                            setItems={setItems}
                             closeAfterSelecting={true}
                             dropDownDirection="BOTTOM"
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <Input placeholder='Title' keyboardType='default' setter={setTitle}/>
-                        <Input placeholder='Calories' keyboardType='numeric' setter={setCalories}/>
+                        <Input placeholder='Calories' keyboardType='number-pad' setter={setCalories}/>
                     </View>
                     <View style={ styles.addButtonWrapper }>
                         <View style={ styles.addButtonContainer }>
                             <Button
                                 title='Add'
                                 color='white'
-                                onPress={() => {calories ? props.setAdded(props.added.concat([[props.type, title, parseInt(calories)]])) : null; props.close(true); props.setOpenType(false); props.setData(props.addedKey, props.added.concat([[props.type, title, parseInt(calories)]]));}}
+                                onPress={() => {
+                                    calories ? setAdded(added.concat([[type, title, parseInt(calories)]])) : null; close(true);
+                                    setOpenType(false);
+                                    setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
+                                }}
                             />
                         </View>
                     </View>
                 </View>
             </View>
         </Modal>
-    );
-}
-
-const Input = (props) => {
-    return (
-        <View>
-            <Text>{props.placeholder}</Text>
-            <TextInput style={styles.input} keyboardType={props.keyboardType} returnKeyType='done' onChangeText={props.setter}/>
-        </View>
     );
 }
 
@@ -111,5 +115,3 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
 });
-
-export default AddCaloriesModal;

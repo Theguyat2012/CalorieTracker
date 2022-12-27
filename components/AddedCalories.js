@@ -5,42 +5,51 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 
 let row = [];
 
-const AddedCalories = (props) => {
+export default function AddedCalories({key, title, calories, added, setAdded, addedKey, setData}) {
+
+    const RightActions = ({index, added, setAdded, setData, addedKey}) => {
+        return (
+            <TouchableOpacity style={styles.remove} onPress={() => {remove(index, added, setAdded, setData, addedKey);}}>
+                <Text>Remove</Text>
+            </TouchableOpacity>
+        );
+    }
+
+    const remove = (index, added, setAdded, setData, addedKey) => {
+        let array = [];
+        for (let i=0; i<added.length; i++) {
+            if (i != index) {
+                array.push(added[i]);
+            }
+        }
+
+        if (row[index]) {
+            row[index].close();
+        }
+
+        setAdded(array);
+        setData(addedKey, array);
+    }
 
     return (
-        <View key={props.index} style={styles.addCaloriesWrapper}>
-            <Swipeable ref={ref => row[props.index] = ref} renderRightActions={() => <RightActions index={props.index} added={props.added} setAdded={props.setAdded} addedKey={props.addedKey} setData={props.setData} />}>
+        <View key={key} style={styles.addCaloriesWrapper}>
+            <Swipeable
+                ref={ref => row[key] = ref}
+                renderRightActions={
+                    () => <RightActions
+                        index={key}
+                        added={added}
+                        setAdded={setAdded}
+                        addedKey={addedKey}
+                        setData={setData} />
+                }>
                 <View style={styles.addCalories}>
-                    <Text>{props.title}</Text>
-                    <Text>{props.calories}</Text>
+                    <Text>{title}</Text>
+                    <Text>{calories}</Text>
                 </View>
             </Swipeable>
         </View>
     );
-}
-
-const RightActions = (props) => {
-    return (
-        <TouchableOpacity style={styles.remove} onPress={() => {remove(props.index, props.added, props.setAdded, props.setData, props.addedKey);}}>
-            <Text>Remove</Text>
-        </TouchableOpacity>
-    );
-}
-
-const remove = (index, added, setAdded, setData, addedKey) => {
-    let array = [];
-    for (let i=0; i<added.length; i++) {
-        if (i != index) {
-            array.push(added[i]);
-        }
-    }
-
-    if (row[index]) {
-        row[index].close();
-    }
-
-    setAdded(array);
-    setData(addedKey, array);
 }
 
 const styles = StyleSheet.create({
@@ -67,5 +76,3 @@ const styles = StyleSheet.create({
         padding: '2.5%',
     },
 });
-
-export default AddedCalories;

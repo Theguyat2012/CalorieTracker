@@ -1,7 +1,9 @@
-import { Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 
+const statusBarHeight = StatusBar.currentHeight;
+const appBarHeight = 22;
 
-const AppBar = () => {
+export default function AppBar() {
     return (
         <View>
             <StatusBar style={styles.statusBar} />
@@ -10,13 +12,7 @@ const AppBar = () => {
     );
 }
 
-const statusBarHeight = StatusBar.currentHeight;
-const appBarHeight = 22;
-
 const styles = StyleSheet.create ({
-    container: {
-        flex: 1,
-    },
     statusbar: {
         backgroundColor: '#3399FF',
         height: statusBarHeight,
@@ -26,5 +22,3 @@ const styles = StyleSheet.create ({
         height: appBarHeight,
     }
 });
-
-export default AppBar;

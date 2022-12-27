@@ -3,13 +3,13 @@ import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
 
 
-const EquationDate = () => {
+export default function EquationDate() {
     const date = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     return (
         <View style={ styles.date }>
-            <Text>{monthNames[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</Text>
+            <Text style={ styles.dateText }>{monthNames[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</Text>
         </View>
     );
 }
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         padding: '3%',
         width: '100%',
     },
+    dateText: {
+        color: 'white',
+    },
 });
-
-export default EquationDate;
