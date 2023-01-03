@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Modal, PixelRatio, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function AddCaloriesModal({visible, openType, setOpenType, type, setType, items, setItems, close, added, setAdded, addedKey, setData}) {
+export default function AddCaloriesModal({visible, type, setType, items, setItems, close, added, setAdded, addedKey, setData}) {
     const [title, setTitle] = useState('');
     const [calories, setCalories] = useState('');
+    const [openType, setOpenType] = useState(false);
 
     return (
         <Modal animationType='slide' visible={visible} transparent={true}>
@@ -14,7 +15,7 @@ export default function AddCaloriesModal({visible, openType, setOpenType, type, 
                     <View style={styles.headerWrapper}>
                         <Text>Add Calories</Text>
                         <TouchableOpacity onPress={() => {close(true); setOpenType(false)}}>
-                            <AntDesign name="closecircle" size={40} color="red" />
+                            <AntDesign name="closecircle" size={40 * PixelRatio.getFontScale()} color="red" />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.dropDownOptions}>
@@ -34,20 +35,17 @@ export default function AddCaloriesModal({visible, openType, setOpenType, type, 
                         <Input placeholder='Title' keyboardType='default' setter={setTitle}/>
                         <Input placeholder='Calories' keyboardType='number-pad' setter={setCalories}/>
                     </View>
-                    <View style={ styles.addButtonWrapper }>
-                        <View style={ styles.addButtonContainer }>
-                            <Button
-                                title='Add'
-                                color='white'
-                                onPress={() => {
-                                    calories ? setAdded(added.concat([[type, title, parseInt(calories)]])) : null;
-                                    close(true);
-                                    setOpenType(false);
-                                    setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
-                                }}
-                            />
-                        </View>
-                    </View>
+                        <TouchableOpacity
+                            style={styles.addButtonContainer}
+                            onPress={() => {
+                                calories ? setAdded(added.concat([[type, title, parseInt(calories)]])) : null;
+                                close(true);
+                                setOpenType(false);
+                                setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
+                            }}
+                        >
+                            <Text style={styles.addButtonText}>Add</Text>
+                        </TouchableOpacity>
                 </View>
             </View>
         </Modal>
@@ -72,7 +70,8 @@ const styles = StyleSheet.create({
     modalView: {
         alignItems: 'center',
         backgroundColor: 'white',
-        borderRadius: 20,
+        borderRadius: 30 * PixelRatio.getFontScale(),
+        borderWidth: 1,
         height: '50%',
         padding: '2%',
         shadowColor: '#000',
@@ -105,13 +104,17 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-evenly',
     },
-    addButtonWrapper: {
-        width: '98%',
-        justifyContent: 'flex-end',
-        marginTop: '5%',
-    },
     addButtonContainer: {
+        alignItems: 'center',
         backgroundColor: '#3399FF',
-        borderRadius: 20,
+        height: 40 * PixelRatio.getFontScale(),
+        width: '100%',
+        justifyContent: 'center',
+        marginTop: '5%',
+        borderRadius: 50 * PixelRatio.getFontScale(),
+    },
+    addButtonText: {
+        color: 'white',
+        fontSize: 15 * PixelRatio.getFontScale(),
     },
 });

@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import { PixelRatio, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import { Swipeable } from "react-native-gesture-handler";
 
 let row = [];
 
@@ -49,7 +50,7 @@ export default function AddedCalories({index, title, calories, added, setAdded, 
 const styles = StyleSheet.create({
     addCaloriesWrapper: {
         width: '98%',
-        marginTop: '2%',
+        marginTop: 9 * PixelRatio.getFontScale(),
     },
     addCalories: {
         width: '100%',
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderRadius: 40,
         borderWidth: 1,
-        padding: '2.5%',
+        padding: 10 * PixelRatio.getFontScale(),
     },
     remove: {
         width: '100%',
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         borderWidth: 1,
         justifyContent: 'center',
-        padding: '2.5%',
+        padding: 10 * PixelRatio.getFontScale(),
     },
     edit: {
         width: '100%',

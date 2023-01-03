@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { View, StyleSheet } from 'react-native';
+import { PixelRatio, StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AddCaloriesButton from "./AddCaloriesButton";
 import AddCaloriesModal from "./AddCaloriesModal";
@@ -9,7 +10,6 @@ import SetLimitModal from "./SetLimitModal";
 export default function Calories({setData, addedKey, added, setAdded, limitKey, limit, setLimit}) {
     const [visibleLimit, setVisibleLimit] = useState(false);
     const [visibleAddCalories, setVisibleAddCalories] = useState(false);
-    const [openType, setOpenType] = useState(false);
     const [type, setType] =  useState(null);
     const [items, setItems] = useState([
       {label: 'Consumed', value: 'Consumed'},
@@ -26,18 +26,16 @@ export default function Calories({setData, addedKey, added, setAdded, limitKey, 
 
     return (
         <>
-            <View style={styles.calories}>
+            <GestureHandlerRootView style={styles.calories}>
                 <AddCaloriesButton add={false} title='Set Limit' onOpen={() => setVisibleLimit()} />
                 <AddCaloriesButton add={true} title='Consumed' onOpen={() => {setVisibleAddCalories(true), setType('Consumed')}} />
                 {renderCalories(added, setAdded, 'Consumed', addedKey=addedKey, setData=setData)}
                 <AddCaloriesButton add={true} title='Burned' onOpen={() => {setVisibleAddCalories(true), setType('Burned')}} />
                 {renderCalories(added, setAdded, 'Burned', addedKey=addedKey, setData=setData)}
-            </View>
+            </GestureHandlerRootView>
 
             <AddCaloriesModal
                 visible={visibleAddCalories}
-                openType={openType}
-                setOpenType={setOpenType}
                 type={type}
                 setType={setType}
                 items={items}
@@ -64,6 +62,7 @@ export default function Calories({setData, addedKey, added, setAdded, limitKey, 
 const styles = StyleSheet.create({
     calories: {
         alignItems: 'center',
+        paddingBottom: 10 * PixelRatio.getFontScale(),
     },
     bigWrap: {
         backgroundColor: 'yellow',

@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { PixelRatio, StyleSheet, Text, View } from 'react-native';
 
 export default function Equation({limit, added}) {
     const placeholders = ['Limit', 'Consumed', 'Burned', 'Remaining'];
 
     const Variable = ({number, word}) => {
         return (
-            <View style={ {alignItems: 'center'} }>
-                <Text>{number}</Text>
-                <Text>{word}</Text>
+            <View style={{ alignItems: 'center' }}>
+                <Text style={styles.equationText}>{number}</Text>
+                <Text style={styles.equationText}>{word}</Text>
             </View>
         );
     }
@@ -41,11 +41,11 @@ export default function Equation({limit, added}) {
     return (
         <View style={styles.equationWrapper}>
             <Variable number={limit} word={placeholders[0]} />
-            <Text>-</Text>
+            <Text style={styles.equationText}>-</Text>
             <Variable number={getCalories(added, placeholders[1])} word={placeholders[1]} />
-            <Text>+</Text>
+            <Text style={styles.equationText}>+</Text>
             <Variable number={getCalories(added, placeholders[2])} word={placeholders[2]} />
-            <Text>=</Text>
+            <Text style={styles.equationText}>=</Text>
             <Variable number={getRemaining(added, limit)} word={placeholders[3]} />
         </View>
     );
@@ -53,8 +53,12 @@ export default function Equation({limit, added}) {
 
 const styles = StyleSheet.create({
     equationWrapper: {
+        borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 20,
+        padding: 20 * PixelRatio.getFontScale(),
+    },
+    equationText: {
+        fontSize: 15 * PixelRatio.getFontScale(),
     },
 });

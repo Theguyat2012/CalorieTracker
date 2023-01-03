@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // React Native
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 // Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -11,7 +11,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppBar from './components/AppBar';
 import Title from './components/Title';
 import Equation from './components/Equation';
-import EquationDate from './components/EquationDate';
 import Calories from './components/Calories';
 
 // Async Keys
@@ -49,10 +48,9 @@ export default function App() {
   return (
     <>
       <AppBar />
+      <Title />
+      <Equation limit={limit} added={added} />
       <ScrollView>
-        <Title />
-        <Equation limit={limit} added={added} />
-        <EquationDate />
         <Calories setData={setData} addedKey={addedKey} added={added} setAdded={setAdded} limitKey={limitKey} limit={limit} setLimit={setLimit} />
       </ScrollView>
     </>

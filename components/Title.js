@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { PixelRatio, StyleSheet, Text, View } from 'react-native';
 
 export default function Title() {
     return (
@@ -11,7 +11,7 @@ export default function Title() {
 const styles = StyleSheet.create({
     headerText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 20 * PixelRatio.getFontScale(),
     },
     headerWrapper: {
         alignItems: 'center',
