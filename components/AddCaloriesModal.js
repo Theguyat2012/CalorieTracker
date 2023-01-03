@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        height: 40 * PixelRatio.getFontScale(),
+        padding: 5 * PixelRatio.getFontScale(),
     },
     inputWrapper: {
         flex: 1,

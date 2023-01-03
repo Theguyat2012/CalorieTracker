@@ -7,7 +7,13 @@ import AddCaloriesModal from "./AddCaloriesModal";
 import Calorie from "./Calorie";
 import SetLimitModal from "./SetLimitModal";
 
-export default function Calories({added, addCalorie, removeCalorie, limitKey, limit, setLimit}) {
+export default function Calories({
+    added,
+    addCalorie,
+    removeCalorie,
+    limit,
+    setNewLimit
+}) {
     const [visibleLimit, setVisibleLimit] = useState(false);
     const [visibleAddCalories, setVisibleAddCalories] = useState(false);
     const [type, setType] =  useState(null);
@@ -48,8 +54,7 @@ export default function Calories({added, addCalorie, removeCalorie, limitKey, li
                 visible={visibleLimit}
                 close={() => setVisibleLimit(false)}
                 limit={limit}
-                setLimit={setLimit}
-                limitKey={limitKey}
+                setNewLimit={setNewLimit}
             />
         </>
     );

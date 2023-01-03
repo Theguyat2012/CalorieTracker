@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, Modal, PixelRatio, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function SetLimitModal({ visible, close, limit, setLimit, limitKey, setData }) {
+export default function SetLimitModal({
+    visible,
+    close,
+    limit,
+    setNewLimit
+}) {
     const [value, setValue] = useState(limit);
 
     return (
@@ -12,31 +17,30 @@ export default function SetLimitModal({ visible, close, limit, setLimit, limitKe
                     <View style={styles.headerWrapper}>
                         <Text>New Limit</Text>
                         <TouchableOpacity onPress={() => close(true)}>
-                            <AntDesign name="closecircle" size={40} color="red" />
+                            <AntDesign name="closecircle" size={40 * PixelRatio.getFontScale()} color="red" />
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.inputWrapper}>
-                        <View style={styles.inputContainer}>
-                            <TextInput
-                                style={styles.limitInput}
-                                onChangeText={(text) => setValue(parseInt(text))}
-                                keyboardType='numeric'
-                                returnKeyType='done'
-                            />
-                        </View>
-                        <View style={ styles.addButtonWrapper }>
-                            <View style={ styles.addButtonContainer }>
-                                <Button
-                                    title='Set New Limit'
-                                    color='white'
-                                    onPress={() => {
-                                        setLimit(value);
-                                        close(true);
-                                        setData(limitKey, value);
-                                    }}
-                                />
-                            </View>
-                        </View>
+                    <View style={styles.inputContainer}>
+                        <TextInput
+                            style={styles.limitInput}
+                            defaultValue={limit.toString()}
+                            onChangeText={(text) => text ? setValue(parseInt(text)) : setValue(limit)}
+                            keyboardType='number-pad'
+                            returnKeyType='done'
+                        />
+                    </View>
+                    <View style={ styles.addButtonContainer }>
+                        <TouchableOpacity
+                            style={ styles.addButton }
+                            title='Set New Limit'
+                            color='white'
+                            onPress={() => {
+                                setNewLimit(value);
+                                close(true);
+                            }}
+                        >
+                            <Text style={styles.addButtonText}>Set New Limit</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -53,13 +57,14 @@ const styles = StyleSheet.create({
     modalView: {
         alignItems: 'center',
         backgroundColor: 'white',
-        borderRadius: 20,
+        borderRadius: 30 * PixelRatio.getFontScale(),
+        borderWidth: 1,
         height: '25%',
         padding: '2%',
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 2 * PixelRatio.getFontScale(),
         },
         shadowOpacity: 0.25,
         width: '90%',
@@ -84,15 +89,21 @@ const styles = StyleSheet.create({
     },
     limitInput: {
         borderWidth: 1,
-        height: 40,
+        padding: 5 * PixelRatio.getFontScale(),
         width: '100%',
     },
-    addButtonWrapper: {
+    addButtonContainer: {
         width: '100%',
         justifyContent: 'flex-end',
     },
-    addButtonContainer: {
+    addButton: {
+        alignItems: 'center',
         backgroundColor: '#3399FF',
-        borderRadius: 20,
+        borderRadius: 20 * PixelRatio.getFontScale(),
+        padding: 10 * PixelRatio.getFontScale(),
+    },
+    addButtonText: {
+        color: 'white',
+        fontSize: 15 * PixelRatio.getFontScale(),
     },
 });

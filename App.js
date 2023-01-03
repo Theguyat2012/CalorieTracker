@@ -46,7 +46,13 @@ export default function App() {
       }
   }
 
-  // Calorie Object Manipulation
+  // Limit Manipulation
+  const setNewLimit = (value) => {
+    setLimit(value);
+    setData(limitKey, value);
+  }
+
+  // Calorie Manipulation
   const addCalorie = (type, title, calories) => {
     setAdded(added.concat([[type, title, parseInt(calories)]]));
     setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
@@ -75,9 +81,8 @@ export default function App() {
           added={added}
           addCalorie={addCalorie}
           removeCalorie={removeCalorie}
-          limitKey={limitKey}
           limit={limit}
-          setLimit={setLimit}
+          setNewLimit={setNewLimit}
         />
       </ScrollView>
     </>
