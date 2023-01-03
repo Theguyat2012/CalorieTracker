@@ -26,6 +26,7 @@ export default function App() {
       getData(addedKey, []).then((data) => setAdded(data));
   }, []);
 
+  // Async Data Manipulation
   const getData = async (key, defaultValue) => {
       try {
           const jsonValue = await AsyncStorage.getItem(key);
@@ -45,13 +46,39 @@ export default function App() {
       }
   }
 
+  // Calorie Object Manipulation
+  const addCalorie = (type, title, calories) => {
+    setAdded(added.concat([[type, title, parseInt(calories)]]));
+    setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
+  }
+
+  const removeCalorie = (index) => {
+    let array = [];
+
+    for (let i=0; i<added.length; i++) {
+        if (i != index) {
+            array.push(added[i]);
+        }
+    }
+
+    setAdded(array);
+    setData(addedKey, array);
+  }
+
   return (
     <>
       <AppBar />
       <Title />
       <Equation limit={limit} added={added} />
       <ScrollView>
-        <Calories setData={setData} addedKey={addedKey} added={added} setAdded={setAdded} limitKey={limitKey} limit={limit} setLimit={setLimit} />
+        <Calories
+          added={added}
+          addCalorie={addCalorie}
+          removeCalorie={removeCalorie}
+          limitKey={limitKey}
+          limit={limit}
+          setLimit={setLimit}
+        />
       </ScrollView>
     </>
   );

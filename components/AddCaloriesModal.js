@@ -3,7 +3,15 @@ import { Modal, PixelRatio, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function AddCaloriesModal({visible, type, setType, items, setItems, close, added, setAdded, addedKey, setData}) {
+export default function AddCaloriesModal({
+    visible,
+    type,
+    setType,
+    items,
+    setItems,
+    close,
+    addCalorie,
+}) {
     const [title, setTitle] = useState('');
     const [calories, setCalories] = useState('');
     const [openType, setOpenType] = useState(false);
@@ -38,10 +46,9 @@ export default function AddCaloriesModal({visible, type, setType, items, setItem
                         <TouchableOpacity
                             style={styles.addButtonContainer}
                             onPress={() => {
-                                calories ? setAdded(added.concat([[type, title, parseInt(calories)]])) : null;
+                                calories ? addCalorie(type, title, parseInt(calories)) : null;
                                 close(true);
                                 setOpenType(false);
-                                setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
                             }}
                         >
                             <Text style={styles.addButtonText}>Add</Text>
@@ -77,7 +84,7 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 2 * PixelRatio.getFontScale(),
         },
         shadowOpacity: 0.25,
         width: '90%',
@@ -87,8 +94,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
-        marginBottom: 5,
-        paddingBottom: 5,
+        marginBottom: 5 * PixelRatio.getFontScale(),
+        paddingBottom: 5 * PixelRatio.getFontScale(),
         borderBottomWidth: 1,
     },
     dropDownOptions: {
@@ -97,7 +104,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        height: 40,
+        height: 40 * PixelRatio.getFontScale(),
     },
     inputWrapper: {
         flex: 1,

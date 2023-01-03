@@ -3,41 +3,27 @@ import { PixelRatio, StyleSheet, Text, TouchableOpacity, View } from 'react-nati
 
 import { Swipeable } from "react-native-gesture-handler";
 
-let row = [];
-
-export default function AddedCalories({index, title, calories, added, setAdded, addedKey, setData}) {
+export default function Calorie({
+    index,
+    title,
+    calories,
+    removeCalorie,
+}) {
+    let row = [];
 
     const RightActions = () => {
         return (
-            <TouchableOpacity style={styles.remove} onPress={remove}>
+            <TouchableOpacity style={styles.remove} onPress={() => {removeCalorie(index); if (row[index]) {row[index].close()}}}>
                 <Text style={styles.actionText}>Remove</Text>
             </TouchableOpacity>
         );
-    }
-
-    const remove = () => {
-        let array = [];
-        for (let i=0; i<added.length; i++) {
-            if (i != index) {
-                array.push(added[i]);
-            }
-        }
-
-        if (row[index]) {
-            row[index].close();
-        }
-
-        setAdded(array);
-        setData(addedKey, array);
     }
 
     return (
         <View key={index} style={styles.addCaloriesWrapper}>
             <Swipeable
                 ref={ref => row[index] = ref}
-                renderRightActions={
-                    () => <RightActions />
-                }>
+                renderRightActions={() => <RightActions />}>
                 <View style={styles.addCalories}>
                     <Text>{title}</Text>
                     <Text>{calories}</Text>
@@ -57,7 +43,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderRadius: 40,
+        borderRadius: 40 * PixelRatio.getFontScale(),
         borderWidth: 1,
         padding: 10 * PixelRatio.getFontScale(),
     },
@@ -65,7 +51,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'flex-end',
         backgroundColor: 'red',
-        borderRadius: 40,
+        borderRadius: 40 * PixelRatio.getFontScale(),
         borderWidth: 1,
         justifyContent: 'center',
         padding: 10 * PixelRatio.getFontScale(),
@@ -74,7 +60,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'flex-start',
         backgroundColor: 'green',
-        borderRadius: 40,
+        borderRadius: 40 * PixelRatio.getFontScale(),
         borderWidth: 1,
         justifyContent: 'center',
         padding: '2.5%',
