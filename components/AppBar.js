@@ -1,6 +1,5 @@
 import { StatusBar, StyleSheet, View } from 'react-native';
 
-
 const statusBarHeight = StatusBar.currentHeight;
 const appBarHeight = 22;
 

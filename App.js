@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // React Native
-import { StatusBar, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 
 // Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
