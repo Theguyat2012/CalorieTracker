@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal, PixelRatio, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -8,7 +8,11 @@ export default function SetLimitModal({
     limit,
     setNewLimit
 }) {
-    const [value, setValue] = useState(limit);
+    const [value, setValue] = useState(0);
+
+    useEffect(() => {
+        setValue(limit);
+    }, [limit]);
 
     return (
         <Modal animationType='slide' visible={visible} transparent={true}>
