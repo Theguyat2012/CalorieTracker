@@ -39,14 +39,14 @@ Pressing the "consumed" button will open up a modal that allows you to add consu
     <img alt="Add calories burned modal" src="images\IMG_6388.PNG" width="300">
 </picture>
 <picture>
-    <img alt="A new element is added below the 'burned' button after adding calories" src="images\IMG_6389.png" width="300">
+    <img alt="A new element is added below the 'burned' button after adding calories" src="images\IMG_6389.PNG" width="300">
 </picture>
 
 ## Consumed Total
 Press the equation to reveal the combined value of calories consumed and calories burned. Tap again to return to the original equation.
 
 <picture>
-    <img alt="Add calories burned modal" src="images\IMG_6390.PNG" width="300">
+    <img alt="Change equation to show combined value of 'consumed' and 'burned'" src="images\IMG_6390.PNG" width="300">
 </picture>
 
 ## Removing Calories
