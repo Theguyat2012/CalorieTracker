@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // React Native
-import { ScrollView } from 'react-native';
+import { StatusBar, ScrollView } from 'react-native';
 
 // Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -63,7 +63,7 @@ export default function App() {
 
     for (let i=0; i<added.length; i++) {
         if (i != index) {
-            array.push(added[i]);
+          array.push(added[i]);
         }
     }
 

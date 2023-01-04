@@ -2,16 +2,6 @@
 
 A simple lightweight react native app that helps with keeping track of your caloric intake. Calories in, calories out. No macro or micronutrient information provided. Useful for when you want to quickly log your meals and snacks without needing the details. Data is saved to your local device.
 
-> react: version 18.1.0
-
-> react-native: version 0.70.5
-
-> node.js: version 18.12.1 LTS
-
-> npm: version 8.19.2
-
-> react-native-async-storage/async-storage: version 1.17.11
-
 ## Recommendations
 You can use my app to quickly track caloric intake on any given day or any number of days. Personally, I find it useful to view my eating habits from a larger perspective. Instead of tracking calories for a single day, I prefer to use it in weekly intervals. For example, I would set my calorie limit for an entire week and keep track of my calories for that week. This way, instead of becoming demoralized by having an "off" day during the week as I often do (I like food), I can clearly see how far I am from my limit for the rest of the week and adjust accordingly.
 

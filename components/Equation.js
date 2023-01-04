@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 20 * PixelRatio.getFontScale(),
+        padding: 25 * PixelRatio.getFontScale(),
     },
     equationText: {
         fontSize: 15 * PixelRatio.getFontScale(),

@@ -23,7 +23,8 @@ export default function Calorie({
         <View key={index} style={styles.addCaloriesWrapper}>
             <Swipeable
                 ref={ref => row[index] = ref}
-                renderRightActions={() => <RightActions />}>
+                renderRightActions={() => <RightActions />}
+            >
                 <View style={styles.addCalories}>
                     <Text>{title}</Text>
                     <Text>{calories}</Text>
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
         borderRadius: 40 * PixelRatio.getFontScale(),
         borderWidth: 1,
         justifyContent: 'center',
-        padding: '2.5%',
+        padding: 10 * PixelRatio.getFontScale(),
     },
     actionText: {
         color: 'white',

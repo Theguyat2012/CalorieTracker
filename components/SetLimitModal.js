@@ -24,7 +24,7 @@ export default function SetLimitModal({
                         <TextInput
                             style={styles.limitInput}
                             defaultValue={limit.toString()}
-                            onChangeText={(text) => text ? setValue(parseInt(text)) : setValue(limit)}
+                            onChangeText={(text) => text ? setValue(parseInt(text)) : setValue(0)}
                             keyboardType='number-pad'
                             returnKeyType='done'
                         />

@@ -1,6 +1,5 @@
-import { StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 
-import { StatusBar } from 'expo-status-bar';
 
 const statusBarHeight = StatusBar.currentHeight;
 const appBarHeight = 22;
@@ -8,7 +7,7 @@ const appBarHeight = 22;
 export default function AppBar() {
     return (
         <View>
-            <StatusBar style="light" />
+            <StatusBar backgroundColor={"#3399FF"} translucent={true} />
             <View style={styles.appBar} />
         </View>
     );

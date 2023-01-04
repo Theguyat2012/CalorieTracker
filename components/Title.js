@@ -11,11 +11,11 @@ export default function Title() {
 const styles = StyleSheet.create({
     headerText: {
         color: 'white',
-        fontSize: 20 * PixelRatio.getFontScale(),
+        fontSize: 18 * PixelRatio.getFontScale(),
     },
     headerWrapper: {
         alignItems: 'center',
         backgroundColor: '#3399FF',
-        padding: 10,
+        padding: 10 * PixelRatio.getFontScale(),
     },
 });
