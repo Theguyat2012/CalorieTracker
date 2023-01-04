@@ -18,8 +18,8 @@ export default function Equation({limit, added}) {
         let value = 0;
         if (added) {
             for (let i = 0; i<added.length; i++) {
-                if (added[i][0] === type) {
-                    value += added[i][2];
+                if (added[i].type === type) {
+                    value += added[i].servings * added[i].caloriesPerServing;
                 }
             }
         }
@@ -30,10 +30,10 @@ export default function Equation({limit, added}) {
         let total = 0;
         if (added) {
             for (let i=0; i<added.length; i++) {
-                if (added[i][0] === placeholders[1]) {
-                    total += added[i][2];
+                if (added[i].type === placeholders[1]) {
+                    total += added[i].servings * added[i].caloriesPerServing;
                 } else {
-                    total -= added[i][2];
+                    total -= added[i].servings * added[i].caloriesPerServing;
                 }
             }
         }
@@ -44,10 +44,10 @@ export default function Equation({limit, added}) {
         let remaining = 0;
         if (added) {
             for (let i=0; i<added.length; i++) {
-                if (added[i][0] === placeholders[1]) {
-                    remaining -= added[i][2];
+                if (added[i].type === placeholders[1]) {
+                    remaining -= added[i].servings * added[i].caloriesPerServing;
                 } else {
-                    remaining += added[i][2];
+                    remaining += added[i].servings * added[i].caloriesPerServing;
                 }
             }
         }

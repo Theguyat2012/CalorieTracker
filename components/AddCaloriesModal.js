@@ -13,6 +13,7 @@ export default function AddCaloriesModal({
     addCalorie,
 }) {
     const [title, setTitle] = useState('');
+    const [servings, setServings] = useState('');
     const [calories, setCalories] = useState('');
     const [openType, setOpenType] = useState(false);
 
@@ -41,14 +42,18 @@ export default function AddCaloriesModal({
                     </View>
                     <View style={styles.inputWrapper}>
                         <Input placeholder='Title' keyboardType='default' setter={setTitle}/>
+                        <Input placeholder={type === 'Consumed' ? 'Servings' : 'Reps'} keyboardType='number-pad' setter={setServings}/>
                         <Input placeholder='Calories' keyboardType='number-pad' setter={setCalories}/>
                     </View>
                         <TouchableOpacity
                             style={styles.addButtonContainer}
                             onPress={() => {
-                                calories ? addCalorie(type, title, parseInt(calories)) : null;
+                                calories ? addCalorie(type, title, servings, parseInt(calories)) : null;
                                 close(true);
                                 setOpenType(false);
+                                // setTitle('');
+                                // setServings('');
+                                // setCalories('');
                             }}
                         >
                             <Text style={styles.addButtonText}>Add</Text>

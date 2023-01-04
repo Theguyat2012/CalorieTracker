@@ -25,13 +25,14 @@ export default function Calories({
     const renderCalories = (type) => {
         return (
             <>
+                {/* {added.map((element, index) => removeCalorie(index))} */}
                 {added.map((element, index) =>
-                    element[0] === type ?
+                    element.type === type ?
                     <Calorie
                         key={index}
                         index={index}
-                        title={element[1]}
-                        calories={element[2]}
+                        title={element.title}
+                        calories={element.servings * element.caloriesPerServing}
                         removeCalorie={removeCalorie}
                     />
                     :

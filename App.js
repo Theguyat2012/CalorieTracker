@@ -13,6 +13,9 @@ import Title from './components/Title';
 import Equation from './components/Equation';
 import Calories from './components/Calories';
 
+// Objects
+import CalorieObject from './objects/CalorieObject';
+
 // Async Keys
 const limitKey = 'limit';
 const addedKey = 'added';
@@ -53,9 +56,14 @@ export default function App() {
   }
 
   // Calorie Manipulation
-  const addCalorie = (type, title, calories) => {
-    setAdded(added.concat([[type, title, parseInt(calories)]]));
-    setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
+  const addCalorie = (type, title, servings, caloriesPerServing) => {
+    const newCalorie = new CalorieObject(type, title, servings, caloriesPerServing);
+    setAdded(added.concat(newCalorie));
+    setData(addedKey, added.concat(newCalorie));
+
+    // Old functionality
+    // setAdded(added.concat([[type, title, parseInt(calories)]]));
+    // setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
   }
 
   const removeCalorie = (index) => {
