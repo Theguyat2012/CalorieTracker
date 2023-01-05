@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, PixelRatio, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
@@ -16,6 +16,10 @@ export default function AddCaloriesModal({
     const [servings, setServings] = useState('');
     const [calories, setCalories] = useState('');
     const [openType, setOpenType] = useState(false);
+
+    useEffect(() => {
+        setServings(1);
+    }, [servings]);
 
     return (
         <Modal animationType='slide' visible={visible} transparent={true}>
@@ -51,9 +55,9 @@ export default function AddCaloriesModal({
                                 calories ? addCalorie(type, title, servings, parseInt(calories)) : null;
                                 close(true);
                                 setOpenType(false);
-                                // setTitle('');
-                                // setServings('');
-                                // setCalories('');
+                                setTitle('');
+                                setServings('');
+                                setCalories('');
                             }}
                         >
                             <Text style={styles.addButtonText}>Add</Text>

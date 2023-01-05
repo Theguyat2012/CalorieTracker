@@ -10,6 +10,7 @@ import SetLimitModal from "./SetLimitModal";
 export default function Calories({
     added,
     addCalorie,
+    editCalorie,
     removeCalorie,
     limit,
     setNewLimit
@@ -33,6 +34,7 @@ export default function Calories({
                         index={index}
                         title={element.title}
                         calories={element.servings * element.caloriesPerServing}
+                        editCalorie={editCalorie}
                         removeCalorie={removeCalorie}
                     />
                     :

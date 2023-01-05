@@ -60,10 +60,19 @@ export default function App() {
     const newCalorie = new CalorieObject(type, title, servings, caloriesPerServing);
     setAdded(added.concat(newCalorie));
     setData(addedKey, added.concat(newCalorie));
+  }
 
-    // Old functionality
-    // setAdded(added.concat([[type, title, parseInt(calories)]]));
-    // setData(addedKey, added.concat([[type, title, parseInt(calories)]]));
+  const editCalorie = (index, type, title, servings, caloriesPerServing) => {
+    const editedCalorie = new CalorieObject(type, title, servings, caloriesPerServing);
+    let array = [];
+
+    for (let i=0; i<added.length; i++) {
+      if (i != index) {
+        array.push(added[i]);
+      } else {
+        array.push(editCalorie);
+      }
+    }
   }
 
   const removeCalorie = (index) => {

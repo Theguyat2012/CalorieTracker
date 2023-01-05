@@ -7,9 +7,19 @@ export default function Calorie({
     index,
     title,
     calories,
+    editCalorie,
     removeCalorie,
 }) {
     let row = [];
+
+    const LeftActions = () => {
+        return(
+            // TODO: onPress, open edit modal
+            <TouchableOpacity style={styles.edit} onPress={() => {if (row[index]) {row[index].close()}}}>
+                <Text style={styles.actionText}>Edit</Text>
+            </TouchableOpacity>
+        );
+    }
 
     const RightActions = () => {
         return (
@@ -23,6 +33,7 @@ export default function Calorie({
         <View key={index} style={styles.addCaloriesWrapper}>
             <Swipeable
                 ref={ref => row[index] = ref}
+                renderLeftActions={() => <LeftActions />}
                 renderRightActions={() => <RightActions />}
             >
                 <View style={styles.addCalories}>
