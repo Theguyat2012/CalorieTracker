@@ -61,13 +61,13 @@ export default function CalorieModal({
                             defaultValue={title}
                         />
                         <Input
-                            placeholder={type === 'Consumed' ? 'Servings' : 'Reps'}
+                            placeholder={type === 'Consumed' ? 'Servings' : 'Sets'}
                             keyboardType='number-pad'
                             setter={(text) =>  text ? servings=text : servings=0}
                             defaultValue={servings ? "" + servings : "0"}
                         />
                         <Input
-                            placeholder='Calories Per Serving'
+                            placeholder={type === 'Consumed' ? 'Calories Per Serving' : 'Calories Per Set'}
                             keyboardType='number-pad'
                             setter={(text) => text ? caloriesPerServing=text : calories=0}
                             defaultValue={caloriesPerServing ? "" + caloriesPerServing : ""}
