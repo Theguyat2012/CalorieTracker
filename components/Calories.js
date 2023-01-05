@@ -3,7 +3,7 @@ import { PixelRatio, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AddCaloriesButton from "./AddCaloriesButton";
-import AddCaloriesModal from "./AddCaloriesModal";
+import CalorieModal from "./CalorieModal";
 import Calorie from "./Calorie";
 import SetLimitModal from "./SetLimitModal";
 
@@ -13,15 +13,20 @@ export default function Calories({
     editCalorie,
     removeCalorie,
     limit,
-    setNewLimit
+    setNewLimit,
 }) {
     const [visibleLimit, setVisibleLimit] = useState(false);
     const [visibleAddCalories, setVisibleAddCalories] = useState(false);
+    const [editMode, setEditMode] = useState(false);
     const [type, setType] =  useState(null);
     const [items, setItems] = useState([
       {label: 'Consumed', value: 'Consumed'},
       {label: 'Burned', value: 'Burned'}
     ]);
+    const[index, setIndex] = useState(null);
+    const[title, setTitle] = useState('');
+    const[servings, setServings] = useState(null);
+    const[caloriesPerServing, setCaloriesPerServing] = useState(null);
 
     const renderCalories = (type) => {
         return (
@@ -34,7 +39,15 @@ export default function Calories({
                         index={index}
                         title={element.title}
                         calories={element.servings * element.caloriesPerServing}
-                        editCalorie={editCalorie}
+                        openEdit={(index) => {
+                            setVisibleAddCalories(true);
+                            setEditMode(true);
+                            setType(type);
+                            setIndex(index);
+                            setTitle(element.title);
+                            setServings(element.servings);
+                            setCaloriesPerServing(element.caloriesPerServing);
+                        }}
                         removeCalorie={removeCalorie}
                     />
                     :
@@ -44,24 +57,60 @@ export default function Calories({
         );
     }
 
+    const resetForAddCalories = () => {
+        setEditMode(false);
+        setTitle('');
+        setServings('1');
+        setCaloriesPerServing('');
+    }
+
     return (
         <>
             <GestureHandlerRootView style={styles.calories}>
-                <AddCaloriesButton add={false} title='Set Limit' onOpen={() => setVisibleLimit()} />
-                <AddCaloriesButton add={true} title='Consumed' onOpen={() => {setVisibleAddCalories(true), setType('Consumed')}} />
+                <AddCaloriesButton
+                    add={false}
+                    title='Set Limit'
+                    onOpen={() => setVisibleLimit()}
+                />
+                <AddCaloriesButton
+                    add={true}
+                    title='Consumed'
+                    onOpen={() => {
+                        setVisibleAddCalories(true);
+                        setType('Consumed');
+                        resetForAddCalories();
+                    }}
+                />
                 {renderCalories('Consumed')}
-                <AddCaloriesButton add={true} title='Burned' onOpen={() => {setVisibleAddCalories(true), setType('Burned')}} />
+                <AddCaloriesButton
+                    add={true}
+                    title='Burned'
+                    onOpen={() => {
+                        setVisibleAddCalories(true);
+                        setType('Burned');
+                        resetForAddCalories();
+                    }}
+                />
                 {renderCalories('Burned')}
             </GestureHandlerRootView>
 
-            <AddCaloriesModal
+            <CalorieModal
                 visible={visibleAddCalories}
                 type={type}
                 setType={setType}
                 items={items}
                 setItems={setItems}
-                close={() => setVisibleAddCalories(false)}
+                close={() => {
+                    setVisibleAddCalories(false);
+                    setEditMode(false);
+                }}
                 addCalorie={addCalorie}
+                editCalorie={editCalorie}
+                editMode={editMode}
+                index={index}
+                title={title}
+                servings={servings}
+                caloriesPerServing={caloriesPerServing}
             />
 
             <SetLimitModal

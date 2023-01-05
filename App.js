@@ -70,9 +70,12 @@ export default function App() {
       if (i != index) {
         array.push(added[i]);
       } else {
-        array.push(editCalorie);
+        array.push(editedCalorie);
       }
     }
+
+    setAdded(array);
+    setData(addedKey, array);
   }
 
   const removeCalorie = (index) => {
@@ -97,6 +100,7 @@ export default function App() {
         <Calories
           added={added}
           addCalorie={addCalorie}
+          editCalorie={editCalorie}
           removeCalorie={removeCalorie}
           limit={limit}
           setNewLimit={setNewLimit}

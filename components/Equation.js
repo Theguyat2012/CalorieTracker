@@ -44,7 +44,6 @@ export default function Equation({limit, added}) {
         let remaining = 0;
         if (added) {
             for (let i=0; i<added.length; i++) {
-                console.log(added[i]);
                 if (added[i].type === placeholders[1]) {
                     remaining -= added[i].servings * added[i].caloriesPerServing;
                 } else {

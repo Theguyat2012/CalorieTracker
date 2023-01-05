@@ -3,7 +3,7 @@ import { Modal, PixelRatio, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function AddCaloriesModal({
+export default function CalorieModal({
     visible,
     type,
     setType,
@@ -11,22 +11,31 @@ export default function AddCaloriesModal({
     setItems,
     close,
     addCalorie,
+    editCalorie,
+    editMode,
+    index,
+    title,
+    servings,
+    caloriesPerServing,
 }) {
-    const [title, setTitle] = useState('');
-    const [servings, setServings] = useState('');
-    const [calories, setCalories] = useState('');
     const [openType, setOpenType] = useState(false);
 
-    useEffect(() => {
-        setServings(1);
-    }, [servings]);
+    const reset = () => {
+        close(true);
+        setOpenType(false);
+    }
 
     return (
         <Modal animationType='slide' visible={visible} transparent={true}>
             <View style={styles.modalWrapper}>
                 <View style={styles.modalView }>
                     <View style={styles.headerWrapper}>
-                        <Text>Add Calories</Text>
+                        {
+                            editMode ?
+                                <Text>Edit Calories</Text>
+                            :
+                                <Text>Add Calories</Text>
+                        }
                         <TouchableOpacity onPress={() => {close(true); setOpenType(false)}}>
                             <AntDesign name="closecircle" size={40 * PixelRatio.getFontScale()} color="red" />
                         </TouchableOpacity>
@@ -45,34 +54,64 @@ export default function AddCaloriesModal({
                         />
                     </View>
                     <View style={styles.inputWrapper}>
-                        <Input placeholder='Title' keyboardType='default' setter={setTitle}/>
-                        <Input placeholder={type === 'Consumed' ? 'Servings' : 'Reps'} keyboardType='number-pad' setter={setServings}/>
-                        <Input placeholder='Calories' keyboardType='number-pad' setter={setCalories}/>
+                        <Input
+                            placeholder='Title'
+                            keyboardType='default'
+                            setter={(text) => text ? title=text : title=""}
+                            defaultValue={title}
+                        />
+                        <Input
+                            placeholder={type === 'Consumed' ? 'Servings' : 'Reps'}
+                            keyboardType='number-pad'
+                            setter={(text) =>  text ? servings=text : servings=0}
+                            defaultValue={servings ? "" + servings : "0"}
+                        />
+                        <Input
+                            placeholder='Calories Per Serving'
+                            keyboardType='number-pad'
+                            setter={(text) => text ? caloriesPerServing=text : calories=0}
+                            defaultValue={caloriesPerServing ? "" + caloriesPerServing : ""}
+                        />
                     </View>
-                        <TouchableOpacity
-                            style={styles.addButtonContainer}
-                            onPress={() => {
-                                calories ? addCalorie(type, title, servings, parseInt(calories)) : null;
-                                close(true);
-                                setOpenType(false);
-                                setTitle('');
-                                setServings('');
-                                setCalories('');
-                            }}
-                        >
-                            <Text style={styles.addButtonText}>Add</Text>
-                        </TouchableOpacity>
+                        {
+                            editMode ?
+                            <TouchableOpacity
+                                style={[styles.addButtonContainer, {backgroundColor: 'green'}]}
+                                onPress={() => {
+                                    caloriesPerServing ? 
+                                        editCalorie(index, type, title, parseInt(servings), parseInt(caloriesPerServing))
+                                        :
+                                        editCalorie(index, type, title, parseInt(servings), 0);
+                                    reset();
+                                }}
+                            >
+                                <Text style={styles.addButtonText}>Edit</Text>
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity
+                                style={styles.addButtonContainer}
+                                onPress={() => {
+                                    caloriesPerServing ?
+                                        addCalorie(type, title, parseInt(servings), parseInt(caloriesPerServing))
+                                        :
+                                        addCalorie(type, title, parseInt(servings), 0);
+                                    reset();
+                                }}
+                            >
+                                <Text style={styles.addButtonText}>Add</Text>
+                            </TouchableOpacity>
+                        }
                 </View>
             </View>
         </Modal>
     );
 }
 
-const Input = ({placeholder, keyboardType, setter}) => {
+const Input = ({placeholder, keyboardType, setter, defaultValue}) => {
     return (
         <View>
             <Text>{placeholder}</Text>
-            <TextInput style={styles.input} keyboardType={keyboardType} returnKeyType='done' onChangeText={setter}/>
+            <TextInput style={styles.input} keyboardType={keyboardType} returnKeyType='done' onChangeText={setter} defaultValue={defaultValue}/>
         </View>
     );
 }
