@@ -14,7 +14,7 @@ export default function Calorie({
 
     const LeftActions = () => {
         return(
-            <TouchableOpacity style={styles.edit} onPress={() => {openEdit(index); if (row[index]) {row[index].close()}}}>
+            <TouchableOpacity style={styles.edit} onPress={() => {openEdit(); if (row[index]) {row[index].close()}}}>
                 <Text style={styles.actionText}>Edit</Text>
             </TouchableOpacity>
         );

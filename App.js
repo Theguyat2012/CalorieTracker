@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // React Native
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 
 // Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,6 +12,7 @@ import AppBar from './components/AppBar';
 import Title from './components/Title';
 import Equation from './components/Equation';
 import Calories from './components/Calories';
+import CalorieInput from './components/CalorieInput';
 
 // Objects
 import CalorieObject from './objects/CalorieObject';
@@ -21,6 +22,7 @@ const limitKey = 'limit';
 const addedKey = 'added';
 
 export default function App() {
+  // Async Storage
   const [limit, setLimit] = useState(0);
   const [added, setAdded] = useState([]);
 
@@ -28,6 +30,22 @@ export default function App() {
       getData(limitKey, 0).then((data) => setLimit(data));
       getData(addedKey, []).then((data) => setAdded(data));
   }, []);
+
+  // Add Calories
+  const [input, setInput] = useState(null);
+  const [type, setType] = useState('');
+  const [title, setTitle] = useState('');
+  const [servings, setServings] = useState('');
+  const [caloriesPerServing, setCaloriesPerServing] = useState('');
+  const [openType, setOpenType] = useState(false);
+  const [items, setItems] = useState([
+    {label: 'Consumed', value: 'Consumed'},
+    {label: 'Burned', value: 'Burned'}
+  ]);
+
+  // Edit Calories
+  const [editMode, setEditMode] = useState(false);
+  const [index, setIndex] = useState(null);
 
   // Async Data Manipulation
   const getData = async (key, defaultValue) => {
@@ -96,16 +114,41 @@ export default function App() {
       <AppBar />
       <Title />
       <Equation limit={limit} added={added} />
-      <ScrollView>
-        <Calories
-          added={added}
-          addCalorie={addCalorie}
-          editCalorie={editCalorie}
-          removeCalorie={removeCalorie}
-          limit={limit}
-          setNewLimit={setNewLimit}
-        />
-      </ScrollView>
+      {input ?
+        input === 'Limit' ?
+          <Text>Limit</Text>
+          :
+          <CalorieInput
+            setInput={setInput}
+            addCalorie={addCalorie}
+            editCalorie={editCalorie}
+            editMode={editMode}
+            index={index}
+            openType={openType}
+            setOpenType={setOpenType}
+            type={type}
+            setType={setType}
+            items={items}
+            setItems={setItems}
+            title={title}
+            servings={servings}
+            caloriesPerServing={caloriesPerServing}
+          />
+        :
+        <ScrollView>
+          <Calories
+            added={added}
+            setEditMode={setEditMode}
+            removeCalorie={removeCalorie}
+            setIndex={setIndex}
+            setInput={setInput}
+            setType={setType}
+            setTitle={setTitle}
+            setServings={setServings}
+            setCaloriesPerServing={setCaloriesPerServing}
+          />
+        </ScrollView>
+      }
     </>
   );
 }
