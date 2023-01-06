@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // React Native
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 // Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,6 +16,7 @@ import CalorieInput from './components/CalorieInput';
 
 // Objects
 import CalorieObject from './objects/CalorieObject';
+import LimitInput from './components/LimitInput';
 
 // Async Keys
 const limitKey = 'limit';
@@ -115,25 +116,32 @@ export default function App() {
       <Title />
       <Equation limit={limit} added={added} />
       {input ?
-        input === 'Limit' ?
-          <Text>Limit</Text>
-          :
-          <CalorieInput
-            setInput={setInput}
-            addCalorie={addCalorie}
-            editCalorie={editCalorie}
-            editMode={editMode}
-            index={index}
-            openType={openType}
-            setOpenType={setOpenType}
-            type={type}
-            setType={setType}
-            items={items}
-            setItems={setItems}
-            title={title}
-            servings={servings}
-            caloriesPerServing={caloriesPerServing}
-          />
+        
+        <View style={styles.containerInput}>
+          {input === 'Limit' ?
+            <LimitInput
+              setInput={setInput}
+              setOpenType={setOpenType}
+            />
+            :
+            <CalorieInput
+              setInput={setInput}
+              addCalorie={addCalorie}
+              editCalorie={editCalorie}
+              editMode={editMode}
+              index={index}
+              openType={openType}
+              setOpenType={setOpenType}
+              type={type}
+              setType={setType}
+              items={items}
+              setItems={setItems}
+              title={title}
+              servings={servings}
+              caloriesPerServing={caloriesPerServing}
+            />
+          }
+        </View>
         :
         <ScrollView>
           <Calories
@@ -152,3 +160,9 @@ export default function App() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  containerInput: {
+    padding: 10,
+  },
+});

@@ -2,6 +2,8 @@ import { PixelRatio, StyleSheet, TextInput, Text, TouchableOpacity, View } from 
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
+import InputHeader from './InputHeader';
+
 export default function CalorieInput({
     setInput,
     addCalorie,
@@ -40,15 +42,12 @@ export default function CalorieInput({
     }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity style={styles.backButton} onPress={reset}>
-                    <Text style={styles.backButtonText}>Back</Text>
-                </TouchableOpacity>
-                <View style={styles.headerTextContainer}>
-                    <Text style={styles.headerText}>Add Calories</Text>
-                </View>
-            </View>
+        <>
+            {editMode ?
+                <InputHeader backPress={reset} headerText={"Edit Calories"} />
+                :
+                <InputHeader backPress={reset} headerText={"Add Calories"} />
+            }
             <View>
                 <View style={styles.dropDownOptions}>
                     <Text>Type</Text>
@@ -111,36 +110,13 @@ export default function CalorieInput({
                     }
                 </View>
             </View>
-        </View>
+        </>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         padding: 10,
-    },
-    backButton: {
-        alignItems: 'center',
-        backgroundColor: 'red',
-        borderRadius: 20 * PixelRatio.getFontScale(),
-        padding: 10 * PixelRatio.getFontScale(),
-        width: 80 * PixelRatio.getFontScale(),
-    },
-    backButtonText: {
-        color: 'white',
-    },
-    header: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        marginVertical: 5 * PixelRatio.getFontScale(),
-        paddingBottom: 13 * PixelRatio.getFontScale(),
-    },
-    headerTextContainer: {
-        alignItems: 'center',
-        flex: 1,
-    },
-    headerText: {
-        fontSize: 15 * PixelRatio.getFontScale(),
     },
     dropDownOptions: {
         elevation: 1,
