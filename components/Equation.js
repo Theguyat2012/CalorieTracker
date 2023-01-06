@@ -8,7 +8,7 @@ export default function Equation({limit, added}) {
     const Variable = ({number, word}) => {
         return (
             <View style={{ alignItems: 'center' }}>
-                <Text style={styles.equationText}>{number}</Text>
+                <Text style={styles.equationText}>{number % 1 === 0 ? number : number.toFixed(2)}</Text>
                 <Text style={styles.equationText}>{word}</Text>
             </View>
         );

@@ -62,13 +62,13 @@ export default function CalorieModal({
                         />
                         <Input
                             placeholder={type === 'Consumed' ? 'Servings' : 'Sets'}
-                            keyboardType='number-pad'
+                            keyboardType='numeric'
                             setter={(text) =>  text ? servings=text : servings=0}
                             defaultValue={servings ? "" + servings : "0"}
                         />
                         <Input
                             placeholder={type === 'Consumed' ? 'Calories Per Serving' : 'Calories Per Set'}
-                            keyboardType='number-pad'
+                            keyboardType='numeric'
                             setter={(text) => text ? caloriesPerServing=text : calories=0}
                             defaultValue={caloriesPerServing ? "" + caloriesPerServing : ""}
                         />
@@ -79,9 +79,9 @@ export default function CalorieModal({
                                 style={[styles.addButtonContainer, {backgroundColor: 'green'}]}
                                 onPress={() => {
                                     caloriesPerServing ? 
-                                        editCalorie(index, type, title, parseInt(servings), parseInt(caloriesPerServing))
+                                        editCalorie(index, type, title, parseFloat(servings), parseFloat(caloriesPerServing))
                                         :
-                                        editCalorie(index, type, title, parseInt(servings), 0);
+                                        editCalorie(index, type, title, parseFloat(servings), 0);
                                     reset();
                                 }}
                             >
@@ -92,9 +92,9 @@ export default function CalorieModal({
                                 style={styles.addButtonContainer}
                                 onPress={() => {
                                     caloriesPerServing ?
-                                        addCalorie(type, title, parseInt(servings), parseInt(caloriesPerServing))
+                                        addCalorie(type, title, parseFloat(servings), parseFloat(caloriesPerServing))
                                         :
-                                        addCalorie(type, title, parseInt(servings), 0);
+                                        addCalorie(type, title, parseFloat(servings), 0);
                                     reset();
                                 }}
                             >
