@@ -110,14 +110,9 @@ export default function App() {
     let array = [];
 
     for (let i=0; i<added.length; i++) {
-        if (i !=  index) {
-          if (i < index) {
-            added[i].id = i;
-          } else {
-            added[i].id = i - 1;
-          }
-          array.push(added[i]);
-        }
+      if (i != index) {
+        array.push(added[i]);
+      }
     }
 
     setAdded(array);
