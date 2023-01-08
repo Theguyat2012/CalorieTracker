@@ -3,6 +3,7 @@ import { PixelRatio, StyleSheet, TextInput, Text, TouchableOpacity, View } from 
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import InputHeader from './InputHeader';
+import InputButton from './InputButton';
 
 export default function CalorieInput({
     setInput,
@@ -82,21 +83,19 @@ export default function CalorieInput({
                 />
                 <View>
                     {editMode ?
-                        <TouchableOpacity
-                            style={[styles.addButtonContainer, {backgroundColor: 'green'}]}
+                        <InputButton
                             onPress={() => {
-                                caloriesPerServing ? 
+                                caloriesPerServing ?
                                     editCalorie(index, type, title, parseFloat(servings), parseFloat(caloriesPerServing))
                                     :
                                     editCalorie(index, type, title, parseFloat(servings), 0);
                                 reset();
                             }}
-                        >
-                            <Text style={styles.addButtonText}>Edit</Text>
-                        </TouchableOpacity>
+                            buttonText={"Edit"}
+                            backgroundColor={"green"}
+                        />
                         :
-                        <TouchableOpacity
-                            style={styles.addButtonContainer}
+                        <InputButton
                             onPress={() => {
                                 caloriesPerServing ?
                                     addCalorie(type, title, parseFloat(servings), parseFloat(caloriesPerServing))
@@ -104,9 +103,8 @@ export default function CalorieInput({
                                     addCalorie(type, title, parseFloat(servings), 0);
                                 reset();
                             }}
-                        >
-                            <Text style={styles.addButtonText}>Add</Text>
-                        </TouchableOpacity>
+                            buttonText={"Add"}
+                        />
                     }
                 </View>
             </View>

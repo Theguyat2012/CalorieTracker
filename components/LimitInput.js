@@ -27,7 +27,7 @@ export default function LimitInput({
                 keyboardType='number-pad'
                 returnKeyType='done'
             />
-            <InputButton onPress={() => value ? setNewLimit(value) : setNewLimit(0)} buttonText={"Set Limit"} />
+            <InputButton onPress={() => {value ? setNewLimit(value) : setNewLimit(0); setInput(null)}} buttonText={"Set Limit"} />
         </>
     );
 }
