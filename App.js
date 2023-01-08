@@ -76,13 +76,13 @@ export default function App() {
 
   // Calorie Manipulation
   const addCalorie = (type, title, servings, caloriesPerServing) => {
-    const newCalorie = new CalorieObject(type, title, servings, caloriesPerServing);
+    const newCalorie = new CalorieObject(added.length, type, title, servings, caloriesPerServing);
     setAdded(added.concat(newCalorie));
     setData(addedKey, added.concat(newCalorie));
   }
 
   const editCalorie = (index, type, title, servings, caloriesPerServing) => {
-    const editedCalorie = new CalorieObject(type, title, servings, caloriesPerServing);
+    const editedCalorie = new CalorieObject(index, type, title, servings, caloriesPerServing);
     let array = [];
 
     for (let i=0; i<added.length; i++) {
@@ -115,10 +115,11 @@ export default function App() {
       <AppBar />
       <Title />
       <Equation limit={limit} added={added} />
-      {input ?
-        
+      {
+        input ?
         <View style={styles.containerInput}>
-          {input === 'Limit' ?
+          {
+            input === 'Limit' ?
             <LimitInput
               setInput={setInput}
               setOpenType={setOpenType}

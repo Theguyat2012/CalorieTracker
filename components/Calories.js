@@ -23,12 +23,12 @@ export default function Calories({
                 {added.map((element, index) =>
                     element.type === type ?
                     <Calorie
-                        key={index}
+                        key={element.id}
                         index={index}
                         title={element.title}
                         calories={element.servings * element.caloriesPerServing}
                         openEdit={() => {
-                            setIndex(index); 
+                            setIndex(index);
                             setEditMode(true);
                             setInput(type);
                             setTitle(element.title);
@@ -51,7 +51,6 @@ export default function Calories({
                 <AddCaloriesButton
                     add={false}
                     title='Set Limit'
-                    // onOpen={() => setVisibleLimit()}
                     onOpen={() => setInput('Limit')}
                 />
                 <AddCaloriesButton

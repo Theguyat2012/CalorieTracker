@@ -14,7 +14,10 @@ export default function Calorie({
 
     const LeftActions = () => {
         return(
-            <TouchableOpacity style={styles.edit} onPress={() => {openEdit(); if (row[index]) {row[index].close()}}}>
+            <TouchableOpacity
+                style={[styles.action, {alignItems: 'flex-start', backgroundColor: 'green'}]}
+                onPress={() => {openEdit(); if (row[index]) {row[index].close()}}}
+            >
                 <Text style={styles.actionText}>Edit</Text>
             </TouchableOpacity>
         );
@@ -22,21 +25,24 @@ export default function Calorie({
 
     const RightActions = () => {
         return (
-            <TouchableOpacity style={styles.remove} onPress={() => {removeCalorie(index); if (row[index]) {row[index].close()}}}>
+            <TouchableOpacity
+                style={[styles.action, {alignItems: 'flex-end', backgroundColor: 'red'}]}
+                onPress={() => {removeCalorie(index); if (row[index]) {row[index].close();}}}
+            >
                 <Text style={styles.actionText}>Remove</Text>
             </TouchableOpacity>
         );
     }
 
     return (
-        <View key={index} style={styles.addCaloriesWrapper}>
+        <View key={index} style={styles.calorieContainer}>
             <Swipeable
                 ref={ref => row[index] = ref}
                 renderLeftActions={() => <LeftActions />}
                 renderRightActions={() => <RightActions />}
                 friction={0.25}
             >
-                <View style={styles.addCalories}>
+                <View style={styles.calorieInfo}>
                     <Text>{title}</Text>
                     <Text>{calories}</Text>
                 </View>
@@ -46,11 +52,11 @@ export default function Calorie({
 }
 
 const styles = StyleSheet.create({
-    addCaloriesWrapper: {
+    calorieContainer: {
         width: '98%',
         marginTop: 9 * PixelRatio.getFontScale(),
     },
-    addCalories: {
+    calorieInfo: {
         width: '100%',
         backgroundColor: 'white',
         flexDirection: 'row',
@@ -59,19 +65,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10 * PixelRatio.getFontScale(),
     },
-    remove: {
+    action: {
         width: '100%',
-        alignItems: 'flex-end',
         backgroundColor: 'red',
-        borderRadius: 40 * PixelRatio.getFontScale(),
-        borderWidth: 1,
-        justifyContent: 'center',
-        padding: 10 * PixelRatio.getFontScale(),
-    },
-    edit: {
-        width: '100%',
-        alignItems: 'flex-start',
-        backgroundColor: 'green',
         borderRadius: 40 * PixelRatio.getFontScale(),
         borderWidth: 1,
         justifyContent: 'center',
