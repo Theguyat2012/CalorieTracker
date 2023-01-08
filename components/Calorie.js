@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { PixelRatio, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Swipeable } from "react-native-gesture-handler";
+
+// let prevOpen = null;
+let row = [];
 
 export default function Calorie({
     index,
@@ -10,13 +13,12 @@ export default function Calorie({
     openEdit,
     removeCalorie,
 }) {
-    let row = [];
 
     const LeftActions = () => {
         return(
             <TouchableOpacity
                 style={[styles.action, {alignItems: 'flex-start', backgroundColor: 'green'}]}
-                onPress={() => {openEdit(); if (row[index]) {row[index].close()}}}
+                onPress={() => {openEdit(); row[index].close();}}
             >
                 <Text style={styles.actionText}>Edit</Text>
             </TouchableOpacity>
@@ -35,9 +37,22 @@ export default function Calorie({
     }
 
     return (
-        <View key={index} style={styles.calorieContainer}>
+        <View style={styles.calorieContainer}>
             <Swipeable
                 ref={ref => row[index] = ref}
+                // onSwipeableOpen={(direction) => 
+                //     {
+                //         if (direction !== "left") {
+                //             console.log(prevOpen);
+                //             if (prevOpen && prevOpen !== row[index]) {
+                //                 prevOpen.close();
+                //                 prevOpen = row[index];
+                //             } else {
+                //                 prevOpen = row[index];
+                //             }
+                //         }
+                //     }
+                // }
                 renderLeftActions={() => <LeftActions />}
                 renderRightActions={() => <RightActions />}
                 friction={0.25}
