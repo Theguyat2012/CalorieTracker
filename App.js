@@ -122,6 +122,8 @@ export default function App() {
             <LimitInput
               setInput={setInput}
               setOpenType={setOpenType}
+              limit={limit}
+              setNewLimit={setNewLimit}
             />
             :
             <CalorieInput

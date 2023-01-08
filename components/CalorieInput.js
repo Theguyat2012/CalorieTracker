@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         height: 40 * PixelRatio.getFontScale(),
         width: '100%',
         justifyContent: 'center',
-        marginTop: '5%',
+        marginTop: 15 * PixelRatio.getFontScale(),
         borderRadius: 50 * PixelRatio.getFontScale(),
     },
     addButtonText: {
