@@ -76,7 +76,16 @@ export default function App() {
 
   // Calorie Manipulation
   const addCalorie = (type, title, servings, caloriesPerServing) => {
-    const newCalorie = new CalorieObject(added.length, type, title, servings, caloriesPerServing);
+    let array = [];
+
+    added.map((element, index) => {
+      element.id = index;
+      array = array.concat(element);
+    });
+
+    const newCalorie = new CalorieObject(array.length, type, title, servings, caloriesPerServing);
+    array = array.concat(newCalorie);
+
     setAdded(added.concat(newCalorie));
     setData(addedKey, added.concat(newCalorie));
   }
@@ -151,7 +160,7 @@ export default function App() {
           }
         </View>
         :
-        <ScrollView>
+        // <ScrollView>
           <Calories
             added={added}
             setEditMode={setEditMode}
@@ -163,7 +172,7 @@ export default function App() {
             setServings={setServings}
             setCaloriesPerServing={setCaloriesPerServing}
           />
-        </ScrollView>
+        // </ScrollView>
       }
     </>
   );
