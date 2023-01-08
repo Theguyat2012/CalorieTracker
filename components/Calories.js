@@ -1,4 +1,4 @@
-import { PixelRatio, StyleSheet } from 'react-native';
+import { FlatList, PixelRatio, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AddCaloriesButton from "./AddCaloriesButton";
