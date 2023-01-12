@@ -64,7 +64,7 @@ export default function CalorieInput({
                     />
                 </View>
                 <Input
-                    label='Title'
+                    label={type === 'Consumed' ? 'Food or Drink' : 'Activity'}
                     keyboardType='default'
                     setter={(text) => text ? title=text : title=""}
                     defaultValue={title}

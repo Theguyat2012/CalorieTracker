@@ -33,7 +33,7 @@ export default function Calories({
                             setInput(type);
                             setTitle(element.title);
                             setType(element.type);
-                            setServings(element.servings)
+                            setServings(element.servings);
                             setCaloriesPerServing(element.caloriesPerServing);
                         }}
                         removeCalorie={removeCalorie}

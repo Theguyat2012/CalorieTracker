@@ -155,7 +155,7 @@ export default function App() {
           }
         </View>
         :
-        // <ScrollView>
+        <ScrollView>
           <Calories
             added={added}
             setEditMode={setEditMode}
@@ -167,7 +167,7 @@ export default function App() {
             setServings={setServings}
             setCaloriesPerServing={setCaloriesPerServing}
           />
-        // </ScrollView>
+        </ScrollView>
       }
     </>
   );
