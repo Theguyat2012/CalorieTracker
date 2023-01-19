@@ -10,7 +10,7 @@ export default function Equation({limit, added}) {
             <View style={{ alignItems: 'center' }}>
                 {percent ?
                 <>
-                    <Text style={styles.equationText}>{number % 1 === 0 ? number : number.toFixed(2)}%</Text>
+                    <Text style={styles.equationText}>{number}%</Text>
                     <Text style={styles.equationText}>{word}</Text>
                 </>
                 :
