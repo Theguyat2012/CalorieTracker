@@ -155,7 +155,7 @@ export default function App() {
           }
         </View>
         :
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <Calories
             added={added}
             setEditMode={setEditMode}
