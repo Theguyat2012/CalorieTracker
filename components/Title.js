@@ -3,7 +3,7 @@ import { PixelRatio, StyleSheet, Text, View } from 'react-native';
 export default function Title() {
     return (
         <View style={styles.headerWrapper}>
-            <Text style={styles.headerText}>CalTrack</Text>
+            <Text style={styles.headerText}>Caltrak</Text>
         </View>
     );
 }
