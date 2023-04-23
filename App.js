@@ -14,6 +14,7 @@ import Equation from './components/Equation';
 import Calories from './components/Calories';
 import CalorieInput from './components/CalorieInput';
 import Navbar from './components/Navbar';
+import Settings from './components/Settings'
 
 // Objects
 import CalorieObject from './objects/CalorieObject';
@@ -48,6 +49,9 @@ export default function App() {
   // Edit Calories
   const [editMode, setEditMode] = useState(false);
   const [index, setIndex] = useState(null);
+
+  // Main
+  const [settings, setSettings] = useState(false);
 
   // Async Data Manipulation
   const getData = async (key, defaultValue) => {
@@ -158,19 +162,25 @@ export default function App() {
         :
         <>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Calories
-              added={added}
-              setEditMode={setEditMode}
-              removeCalorie={removeCalorie}
-              setIndex={setIndex}
-              setInput={setInput}
-              setType={setType}
-              setTitle={setTitle}
-              setServings={setServings}
-              setCaloriesPerServing={setCaloriesPerServing}
-            />
+            {
+              !settings ?
+              <Calories
+                added={added}
+                setEditMode={setEditMode}
+                removeCalorie={removeCalorie}
+                setIndex={setIndex}
+                setInput={setInput}
+                setType={setType}
+                setTitle={setTitle}
+                setServings={setServings}
+                setCaloriesPerServing={setCaloriesPerServing}
+              />
+              :
+              // Settings Here
+              <Settings />
+            }
           </ScrollView>
-          <Navbar />
+          <Navbar setSettings={setSettings}/>
         </>
       }
     </>
