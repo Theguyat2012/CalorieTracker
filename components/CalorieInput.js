@@ -1,4 +1,4 @@
-import { PixelRatio, StyleSheet, TextInput, Text, TouchableOpacity, View } from 'react-native';
+import { PixelRatio, StyleSheet, TextInput, Text, View } from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 

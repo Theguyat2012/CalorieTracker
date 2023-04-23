@@ -13,6 +13,7 @@ import Title from './components/Title';
 import Equation from './components/Equation';
 import Calories from './components/Calories';
 import CalorieInput from './components/CalorieInput';
+import Navbar from './components/Navbar';
 
 // Objects
 import CalorieObject from './objects/CalorieObject';
@@ -155,19 +156,22 @@ export default function App() {
           }
         </View>
         :
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <Calories
-            added={added}
-            setEditMode={setEditMode}
-            removeCalorie={removeCalorie}
-            setIndex={setIndex}
-            setInput={setInput}
-            setType={setType}
-            setTitle={setTitle}
-            setServings={setServings}
-            setCaloriesPerServing={setCaloriesPerServing}
-          />
-        </ScrollView>
+        <>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Calories
+              added={added}
+              setEditMode={setEditMode}
+              removeCalorie={removeCalorie}
+              setIndex={setIndex}
+              setInput={setInput}
+              setType={setType}
+              setTitle={setTitle}
+              setServings={setServings}
+              setCaloriesPerServing={setCaloriesPerServing}
+            />
+          </ScrollView>
+          <Navbar />
+        </>
       }
     </>
   );
