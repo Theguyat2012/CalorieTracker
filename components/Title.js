@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     },
     headerWrapper: {
         alignItems: 'center',
+        borderBottomWidth: 1,
         backgroundColor: '#3399FF',
         padding: 10 * PixelRatio.getFontScale(),
     },
