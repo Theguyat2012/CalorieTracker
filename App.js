@@ -176,8 +176,14 @@ export default function App() {
                 setCaloriesPerServing={setCaloriesPerServing}
               />
               :
-              // Settings Here
-              <Settings />
+              <Settings
+                added={added}
+                setAdded={setAdded}
+                addedKey={addedKey}
+                setData={setData}
+                consumedLabel={items[0].label}
+                burnedLabel={items[1].label}
+              />
             }
           </ScrollView>
           <Navbar setSettings={setSettings}/>
