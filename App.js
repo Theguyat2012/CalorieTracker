@@ -164,26 +164,30 @@ export default function App() {
           <ScrollView showsVerticalScrollIndicator={false}>
             {
               !settings ?
-              <Calories
-                added={added}
-                setEditMode={setEditMode}
-                removeCalorie={removeCalorie}
-                setIndex={setIndex}
-                setInput={setInput}
-                setType={setType}
-                setTitle={setTitle}
-                setServings={setServings}
-                setCaloriesPerServing={setCaloriesPerServing}
-              />
+              <>
+                <Calories
+                  added={added}
+                  setEditMode={setEditMode}
+                  removeCalorie={removeCalorie}
+                  setIndex={setIndex}
+                  setInput={setInput}
+                  setType={setType}
+                  setTitle={setTitle}
+                  setServings={setServings}
+                  setCaloriesPerServing={setCaloriesPerServing}
+                />
+              </>
               :
-              <Settings
-                added={added}
-                setAdded={setAdded}
-                addedKey={addedKey}
-                setData={setData}
-                consumedLabel={items[0].label}
-                burnedLabel={items[1].label}
-              />
+              <>
+                <Settings
+                  added={added}
+                  setAdded={setAdded}
+                  addedKey={addedKey}
+                  setData={setData}
+                  consumedLabel={items[0].label}
+                  burnedLabel={items[1].label}
+                />
+              </>
             }
           </ScrollView>
           <Navbar setSettings={setSettings}/>

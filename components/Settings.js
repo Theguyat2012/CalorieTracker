@@ -38,6 +38,7 @@ export default function Settings({
 }) {
     return (
         <>
+            <Text style={styles.title}>Settings</Text>
             <Button title='Reset Calories' onPress={() => reset(setAdded, addedKey, setData)} />
             <Button title='Delete All CONSUMED' onPress={() => removeCalories(added, setAdded, addedKey, setData, consumedLabel)} />
             <Button title='Delete All BURNED' onPress={() => removeCalories(added, setAdded, addedKey, setData, burnedLabel)} />
@@ -63,5 +64,10 @@ const styles = StyleSheet.create({
         color: 'white',
         paddingLeft: 20,
         fontSize: 15 * PixelRatio.getFontScale(),
+    },
+    title: {
+        fontSize: 18 * PixelRatio.getFontScale(),
+        paddingLeft: 10 * PixelRatio.getFontScale(),
+        paddingTop: 10 * PixelRatio.getFontScale(),
     },
 });

@@ -1,4 +1,4 @@
-import { FlatList, PixelRatio, StyleSheet } from 'react-native';
+import { PixelRatio, StyleSheet, Text } from 'react-native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AddCaloriesButton from "./AddCaloriesButton";
@@ -47,6 +47,7 @@ export default function Calories({
 
     return (
         <>
+            <Text style={styles.title}>Log</Text>
             <GestureHandlerRootView style={styles.calories}>
                 <AddCaloriesButton
                     add={false}
@@ -88,5 +89,10 @@ const styles = StyleSheet.create({
     calories: {
         alignItems: 'center',
         paddingBottom: 10 * PixelRatio.getFontScale(),
+    },
+    title: {
+        fontSize: 18 * PixelRatio.getFontScale(),
+        paddingLeft: 10 * PixelRatio.getFontScale(),
+        paddingTop: 10 * PixelRatio.getFontScale(),
     },
 });
