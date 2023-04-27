@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // React Native
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 // Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -23,6 +23,12 @@ import LimitInput from './components/LimitInput';
 // Async Keys
 const limitKey = 'limit';
 const addedKey = 'added';
+
+// AdMob
+import mobileAds, { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
+
+mobileAds()
+  .initialize()
 
 export default function App() {
   // Async Storage
@@ -126,8 +132,10 @@ export default function App() {
 
   return (
     <>
-      <AppBar />
-      <Title />
+      <SafeAreaView>
+        {/* <AppBar /> */}
+        <Title />
+      </SafeAreaView>
       <Equation limit={limit} added={added} />
       {
         input ?
@@ -162,6 +170,7 @@ export default function App() {
         :
         <>
           <ScrollView showsVerticalScrollIndicator={false}>
+            <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
             {
               !settings ?
               <>

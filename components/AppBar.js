@@ -5,10 +5,10 @@ const appBarHeight = 22;
 
 export default function AppBar() {
     return (
-        <View>
+        <>
             <StatusBar backgroundColor={"#3399FF"} translucent={true} />
             <View style={styles.appBar} />
-        </View>
+        </>
     );
 }
 
