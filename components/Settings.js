@@ -14,7 +14,6 @@ const confirmRemoval = (alertTitle, alertMessage, removalFunction) => {
     Alert.alert(alertTitle, 'Are you sure that you want to ' + alertMessage, [
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
         {text: 'OK', onPress: () => removalFunction()},

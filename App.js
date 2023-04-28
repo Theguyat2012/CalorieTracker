@@ -27,7 +27,7 @@ const addedKey = 'added';
 // AdMob
 import mobileAds, { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-6986970147030097~6117650707"
+const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-6986970147030097/3816960420"
 
 mobileAds()
   .initialize()
