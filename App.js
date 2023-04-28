@@ -27,6 +27,8 @@ const addedKey = 'added';
 // AdMob
 import mobileAds, { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 
+const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-6986970147030097~6117650707"
+
 mobileAds()
   .initialize()
 
@@ -170,7 +172,7 @@ export default function App() {
         :
         <>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
+            <BannerAd unitId={adUnitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
             {
               !settings ?
               <>
