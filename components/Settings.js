@@ -1,4 +1,4 @@
-import { PixelRatio, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, PixelRatio, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 function Button({title, onPress}) {
     return (
@@ -7,6 +7,18 @@ function Button({title, onPress}) {
                 <Text style={styles.text}>{title}</Text>
             </TouchableOpacity>
         </View>
+    );
+}
+
+const confirmRemoval = (alertTitle, alertMessage, removalFunction) => {
+    Alert.alert(alertTitle, 'Are you sure that you want to ' + alertMessage, [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => removalFunction()},
+      ]
     );
 }
 
@@ -39,9 +51,27 @@ export default function Settings({
     return (
         <>
             <Text style={styles.title}>Settings</Text>
-            <Button title='Reset Calories' onPress={() => reset(setAdded, addedKey, setData)} />
-            <Button title='Delete All CONSUMED' onPress={() => removeCalories(added, setAdded, addedKey, setData, consumedLabel)} />
-            <Button title='Delete All BURNED' onPress={() => removeCalories(added, setAdded, addedKey, setData, burnedLabel)} />
+            <Button title='Reset Calories' onPress={
+                () => confirmRemoval(
+                    "Reset Calories",
+                    "reset your calories?",
+                    () => {reset(setAdded, addedKey, setData)}
+                )}
+            />
+            <Button title='Delete All CONSUMED' onPress={
+                () => confirmRemoval(
+                    "Delete All CONSUMED",
+                    "delete all of your consumed calories?",
+                    () => {removeCalories(added, setAdded, addedKey, setData, consumedLabel)}
+                )}
+            />
+            <Button title='Delete All BURNED' onPress={
+                () => confirmRemoval(
+                    "Delete All BURNED",
+                    "delete all of your burned calories?",
+                    () => {removeCalories(added, setAdded, addedKey, setData, burnedLabel)}
+                )}
+            />
         </>
     );
 }
