@@ -34,8 +34,12 @@ export default function LimitInput({
 
 const styles = StyleSheet.create({
     limitInput: {
+        backgroundColor: 'white',
         borderWidth: 1,
         padding: 5 * PixelRatio.getFontScale(),
         width: '100%',
+    },
+    white: {
+        color: 'white',
     },
 });

@@ -39,5 +39,6 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 15 * PixelRatio.getFontScale(),
+        color: 'white',
     },
 });

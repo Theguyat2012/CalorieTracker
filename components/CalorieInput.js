@@ -1,4 +1,4 @@
-import { PixelRatio, StyleSheet, TextInput, Text, View } from 'react-native';
+import { PixelRatio, StyleSheet, TextInput, TouchableOpacity, Text, View } from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -25,7 +25,7 @@ export default function CalorieInput({
     const Input = ({label, keyboardType, setter, defaultValue}) => {
         return (
             <View>
-                <Text>{label}</Text>
+                <Text style={styles.white}>{label}</Text>
                 <TextInput
                     style={styles.input}
                     keyboardType={keyboardType}
@@ -51,7 +51,7 @@ export default function CalorieInput({
             }
             <View>
                 <View style={styles.dropDownOptions}>
-                    <Text>Type</Text>
+                    <Text style={styles.white}>Type</Text>
                     <DropDownPicker
                         open={openType}
                         value={type}
@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     input: {
+        backgroundColor: 'white',
         borderColor: 'grey',
         borderRadius: 5 * PixelRatio.getFontScale(),
         borderWidth: 1,
@@ -138,5 +139,15 @@ const styles = StyleSheet.create({
     addButtonText: {
         color: 'white',
         fontSize: 15 * PixelRatio.getFontScale(),
+    },
+    backButton: {
+        alignItems: 'center',
+        backgroundColor: 'red',
+        borderRadius: 20 * PixelRatio.getFontScale(),
+        padding: 10 * PixelRatio.getFontScale(),
+        width: 80 * PixelRatio.getFontScale(),
+    },
+    white: {
+        color: 'white',
     },
 });

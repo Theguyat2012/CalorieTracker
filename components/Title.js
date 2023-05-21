@@ -11,12 +11,12 @@ export default function Title() {
 const styles = StyleSheet.create({
     headerText: {
         color: 'white',
-        fontSize: 18 * PixelRatio.getFontScale(),
+        fontSize: 20 * PixelRatio.getFontScale(),
     },
     headerWrapper: {
         alignItems: 'center',
         borderBottomWidth: 1,
-        backgroundColor: '#3399FF',
+        backgroundColor: 'steelblue',
         padding: 10 * PixelRatio.getFontScale(),
     },
 });

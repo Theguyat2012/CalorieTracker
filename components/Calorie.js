@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { PixelRatio, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Swipeable } from "react-native-gesture-handler";
 
-// let prevOpen = null;
 let row = [];
 
 export default function Calorie({
@@ -12,12 +11,13 @@ export default function Calorie({
     calories,
     openEdit,
     removeCalorie,
+    type,
 }) {
 
     const LeftActions = () => {
         return(
             <TouchableOpacity
-                style={[styles.action, {alignItems: 'flex-start', backgroundColor: 'green'}]}
+                style={[styles.action, {alignItems: 'flex-start', backgroundColor: 'goldenrod'}]}
                 onPress={() => {openEdit(); row[index].close();}}
             >
                 <Text style={styles.actionText}>Edit</Text>
@@ -40,26 +40,23 @@ export default function Calorie({
         <View style={styles.calorieContainer}>
             <Swipeable
                 ref={ref => row[index] = ref}
-                // onSwipeableOpen={(direction) => 
-                //     {
-                //         if (direction !== "left") {
-                //             console.log(prevOpen);
-                //             if (prevOpen && prevOpen !== row[index]) {
-                //                 prevOpen.close();
-                //                 prevOpen = row[index];
-                //             } else {
-                //                 prevOpen = row[index];
-                //             }
-                //         }
-                //     }
-                // }
                 renderLeftActions={() => <LeftActions />}
                 renderRightActions={() => <RightActions />}
                 friction={0.25}
             >
                 <View style={styles.calorieInfo}>
-                    <Text>{title}</Text>
-                    <Text>{calories}</Text>
+                    {
+                        type === "Burned" ?
+                        <>
+                            <Text style={styles.green}>{title}</Text>
+                            <Text style={styles.green}>+{calories}</Text>
+                        </>
+                        :
+                        <>
+                            <Text style={styles.red}>{title}</Text>
+                            <Text style={styles.red}>-{calories}</Text>
+                        </>
+                    }
                 </View>
             </Swipeable>
         </View>
@@ -73,22 +70,26 @@ const styles = StyleSheet.create({
     },
     calorieInfo: {
         width: '100%',
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderRadius: 40 * PixelRatio.getFontScale(),
         borderWidth: 1,
         padding: 10 * PixelRatio.getFontScale(),
     },
     action: {
         width: '100%',
         backgroundColor: 'red',
-        borderRadius: 40 * PixelRatio.getFontScale(),
         borderWidth: 1,
         justifyContent: 'center',
         padding: 10 * PixelRatio.getFontScale(),
     },
     actionText: {
         color: 'white',
+    },
+    green: {
+        color: 'lime',
+    },
+    red: {
+        color: 'red',
     },
 });

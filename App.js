@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // React Native
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { PixelRatio, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,6 +15,8 @@ import Calories from './components/Calories';
 import CalorieInput from './components/CalorieInput';
 import Navbar from './components/Navbar';
 import Settings from './components/Settings'
+import Log from './components/Log';
+import PlusMinus from './components/PlusMinus';
 
 // Objects
 import CalorieObject from './objects/CalorieObject';
@@ -138,10 +140,9 @@ export default function App() {
         {/* <AppBar /> */}
         <Title />
       </SafeAreaView>
-      <Equation limit={limit} added={added} />
       {
         input ?
-        <View style={styles.containerInput}>
+        <View style={[styles.containerInput, styles.backgroundBlack]}>
           {
             input === 'Limit' ?
             <LimitInput
@@ -171,12 +172,28 @@ export default function App() {
         </View>
         :
         <>
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView showsVerticalScrollIndicator={false} style={styles.backgroundBlack}>
             <BannerAd unitId={adUnitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
             {
               !settings ?
               <>
-                <Calories
+                {/* <Calories
+                  added={added}
+                  setEditMode={setEditMode}
+                  removeCalorie={removeCalorie}
+                  setIndex={setIndex}
+                  setInput={setInput}
+                  setType={setType}
+                  setTitle={setTitle}
+                  setServings={setServings}
+                  setCaloriesPerServing={setCaloriesPerServing}
+                /> */}
+                <View style={styles.center}>
+                  <Text style={[styles.white, styles.header]}>
+                    Log
+                  </Text>
+                </View>
+                <Log
                   added={added}
                   setEditMode={setEditMode}
                   removeCalorie={removeCalorie}
@@ -201,6 +218,20 @@ export default function App() {
               </>
             }
           </ScrollView>
+          <Equation
+            limit={limit}
+            added={added}
+          />
+          <PlusMinus
+            setEditMode={setEditMode}
+            setInput={setInput}
+            setType={setType}
+            setServings={setServings}
+            setCaloriesPerServing={setCaloriesPerServing}
+            setIndex={setIndex}
+            setTitle={setTitle}
+            removeCalorie={removeCalorie}
+          />
           <Navbar setSettings={setSettings}/>
         </>
       }
@@ -209,7 +240,20 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  center: {
+    alignItems: 'center',
+  },
+  backgroundBlack: {
+    backgroundColor: 'black',
+  },
   containerInput: {
     padding: 10,
+    height: '100%',
+  },
+  white: {
+    color: 'white',
+  },
+  header: {
+    fontSize: 40 * PixelRatio.getFontScale(),
   },
 });

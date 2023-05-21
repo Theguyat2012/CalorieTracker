@@ -7,10 +7,10 @@ export default function Navbar({setSettings}) {
     return (
         <View style={styles.navbarWrapper}>
             <TouchableOpacity style={styles.button} onPress={() => setSettings(false)}>
-                <MaterialCommunityIcons name="book-open-outline" size={24} color="black" style={styles.buttonIcon} />
+                <MaterialCommunityIcons name="book-open-outline" size={24} color="white" style={styles.buttonIcon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => setSettings(true)}>
-                <FontAwesome5 name="cog" size={24} color="black" style={styles.buttonIcon} />
+                <FontAwesome5 name="cog" size={24} color="white" style={styles.buttonIcon} />
             </TouchableOpacity>
         </View>
     );
@@ -18,6 +18,7 @@ export default function Navbar({setSettings}) {
 
 const styles = StyleSheet.create({
     navbarWrapper: {
+        backgroundColor: 'black',
         borderTopWidth: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -31,5 +32,4 @@ const styles = StyleSheet.create({
     buttonIcon: {
         fontSize: 50,
     },
-
 });

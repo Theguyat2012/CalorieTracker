@@ -19,7 +19,6 @@ export default function Calories({
     const renderCalories = (type) => {
         return (
             <>
-                {/* {added.map((element, index) => removeCalorie(index))} */}
                 {added.map((element, index) =>
                     element.type === type ?
                     <Calorie

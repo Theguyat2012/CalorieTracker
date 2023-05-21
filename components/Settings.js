@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
         fontSize: 15 * PixelRatio.getFontScale(),
     },
     title: {
+        color: 'white',
         fontSize: 18 * PixelRatio.getFontScale(),
         paddingLeft: 10 * PixelRatio.getFontScale(),
         paddingTop: 10 * PixelRatio.getFontScale(),
