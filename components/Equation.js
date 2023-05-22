@@ -90,7 +90,13 @@ export default function Equation({limit, added}) {
         );
     }
 
-    const display = [regular, consumed, burned];
+    const difference = () => {
+        return (
+            <Variable number={getCalories('Consumed') - getCalories('Burned')} word="Calorie Difference" />
+        );
+    }
+
+    const display = [regular, consumed, burned, difference];
 
     const changeDisplay = () => {
         if (displayIndex < display.length - 1) {
