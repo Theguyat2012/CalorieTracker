@@ -48,13 +48,13 @@ export default function Calorie({
                     {
                         type === "Burned" ?
                         <>
-                            <Text style={styles.green}>{title}</Text>
-                            <Text style={styles.green}>+{calories}</Text>
+                            <Text style={[styles.green, styles.calorieFont]}>{title}</Text>
+                            <Text style={[styles.green, styles.calorieFont]}>+{calories}</Text>
                         </>
                         :
                         <>
-                            <Text style={styles.red}>{title}</Text>
-                            <Text style={styles.red}>-{calories}</Text>
+                            <Text style={[styles.red, styles.calorieFont]}>{title}</Text>
+                            <Text style={[styles.red, styles.calorieFont]}>-{calories}</Text>
                         </>
                     }
                 </View>
@@ -91,5 +91,8 @@ const styles = StyleSheet.create({
     },
     red: {
         color: 'red',
+    },
+    calorieFont: {
+        fontSize: 15 * PixelRatio.getFontScale(),
     },
 });

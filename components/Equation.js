@@ -36,20 +36,6 @@ export default function Equation({limit, added}) {
         return value;
     }
 
-    const getConsumedTotal = () => {
-        let total = 0;
-        if (added) {
-            for (let i=0; i<added.length; i++) {
-                if (added[i].type === placeholders[1]) {
-                    total += added[i].servings * added[i].caloriesPerServing;
-                } else {
-                    total -= added[i].servings * added[i].caloriesPerServing;
-                }
-            }
-        }
-        return total;
-    }
-
     const getRemaining = (limit) => {
         let remaining = 0;
         if (added) {
@@ -64,58 +50,47 @@ export default function Equation({limit, added}) {
         return limit + remaining;
     }
 
-    const getConsumedPercentage = () => {
-        let consumed = 0;
-        if (added) {
-            for (let i=0; i<added.length; i++) {
-                if (added[i].type === placeholders[1]) {
-                    consumed += added[i].servings * added[i].caloriesPerServing;
-                }
+    const getItems = (type) => {
+        let items = 0;
+        let i = 0;
+
+        for(i=0; i<added.length; i++) {
+            if (added[i].type === type) {
+                items += 1;
             }
         }
-        return (consumed / limit) * 100;
-    }
 
-    const getConsumedTotalPercentage = () => {
-        return (getConsumedTotal() / limit) * 100;
+        return items;
     }
 
     const regular = () => {
         return (
             <>
-                <Variable number={limit} word={placeholders[0]} />
-                <Text style={styles.equationText}>-</Text>
-                <Variable number={getCalories(placeholders[1])} word={placeholders[1]} />
-                <Text style={styles.equationText}>+</Text>
-                <Variable number={getCalories(placeholders[2])} word={placeholders[2]} />
-                <Text style={styles.equationText}>=</Text>
-                <Variable number={getRemaining(limit)} word={placeholders[3]} />
+                <Variable number={getRemaining(limit)} word={"Calories " + placeholders[3]} />
+                <Variable number={added.length} word={"Items Logged"} />
             </>
         );
     }
 
-    const total = () => {
+    const consumed = () => {
         return (
             <>
-                <Variable number={limit} word={placeholders[0]} />
-                <Text style={styles.equationText}>-</Text>
-                <Variable number={getConsumedTotal()} word="Consumed Total" />
-                <Text style={styles.equationText}>=</Text>
-                <Variable number={getRemaining(limit)} word={placeholders[3]} />
+                <Variable number={getCalories('Consumed')} word="Calories Consumed" />
+                <Variable number={getItems('Consumed')} word="Foods" />
             </>
         );
     }
 
-    const percentage = () => {
+    const burned = () => {
         return (
             <>
-                <Variable number={getConsumedPercentage()} word="Consumed" percent={true} />
-                <Variable number={getConsumedTotalPercentage()} word="Consumed Total" percent={true} />
+                <Variable number={getCalories('Burned')} word="Calories Burned" />
+                <Variable number={getItems('Burned')} word="Exercises" />
             </>
         );
     }
 
-    const display = [regular, total, percentage];
+    const display = [regular, consumed, burned];
 
     const changeDisplay = () => {
         if (displayIndex < display.length - 1) {
@@ -136,12 +111,18 @@ export default function Equation({limit, added}) {
 
 const styles = StyleSheet.create({
     equationWrapper: {
+        backgroundColor: 'steelblue',
         borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
         padding: 25 * PixelRatio.getFontScale(),
+        borderTopWidth: 1,
+        borderTopColor: 'white',
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
     },
     equationText: {
+        color: 'white',
         fontSize: 15 * PixelRatio.getFontScale(),
     },
 });
