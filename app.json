@@ -4,12 +4,12 @@
     "slug": "CalorieTracker",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/CalTrak.png",
-    "userInterfaceStyle": "dark",
+    "icon": "./assets/CalTrak48.png",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/CalTrak.png",
+      "image": "./assets/CalTrak48.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,13 +22,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/CalTrak.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/CalTrak48.png",
+        "backgroundColor": "#000000"
       },
       "package": "com.aleton.CalorieTracker"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/CalTrak48.png"
     },
     "extra": {
       "eas": {
