@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function Log({
     added,
+    limit,
     setEditMode,
     removeCalorie,
     setIndex,
@@ -42,7 +43,7 @@ export default function Log({
         <View style={styles.body}>
             <TouchableOpacity style={styles.limitContainer} onPress={() => setInput('Limit')}>
                 <Text style={(styles.header, styles.limitText)}>Limit</Text>
-                <Text style={styles.limitText}>2000</Text>
+                <Text style={styles.limitText}>{limit}</Text>
             </TouchableOpacity>
             <GestureHandlerRootView style={styles.alignCenter}>
                 {renderCalories()}

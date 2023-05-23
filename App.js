@@ -195,6 +195,7 @@ export default function App() {
                 </View>
                 <Log
                   added={added}
+                  limit={limit}
                   setEditMode={setEditMode}
                   removeCalorie={removeCalorie}
                   setIndex={setIndex}
