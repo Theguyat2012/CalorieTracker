@@ -11,7 +11,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppBar from './components/AppBar';
 import Title from './components/Title';
 import Equation from './components/Equation';
-import Calories from './components/Calories';
 import CalorieInput from './components/CalorieInput';
 import Navbar from './components/Navbar';
 import Settings from './components/Settings'
@@ -177,17 +176,6 @@ export default function App() {
             {
               !settings ?
               <>
-                {/* <Calories
-                  added={added}
-                  setEditMode={setEditMode}
-                  removeCalorie={removeCalorie}
-                  setIndex={setIndex}
-                  setInput={setInput}
-                  setType={setType}
-                  setTitle={setTitle}
-                  setServings={setServings}
-                  setCaloriesPerServing={setCaloriesPerServing}
-                /> */}
                 <View style={styles.center}>
                   <Text style={[styles.white, styles.header]}>
                     Log
