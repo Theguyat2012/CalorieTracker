@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "CalTrak",
+    "name": "CalorieTracker",
     "slug": "CalorieTracker",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.aleton.CalTrak"
+      "package": "com.aleton.CalorieTracker"
     },
     "web": {
       "favicon": "./assets/favicon.png"
