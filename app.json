@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/CalTrak.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.aleton.CalorieTracker"
