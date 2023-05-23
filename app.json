@@ -4,10 +4,10 @@
     "slug": "CalorieTracker",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/CalTrak.png",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/CalTrak.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
