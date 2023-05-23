@@ -49,7 +49,6 @@ export default function Settings({
 }) {
     return (
         <>
-            <Text style={styles.title}>Settings</Text>
             <Button title='Reset Calories' onPress={
                 () => confirmRemoval(
                     "Reset Calories",
@@ -93,11 +92,5 @@ const styles = StyleSheet.create({
         color: 'white',
         paddingLeft: 20,
         fontSize: 15 * PixelRatio.getFontScale(),
-    },
-    title: {
-        color: 'white',
-        fontSize: 18 * PixelRatio.getFontScale(),
-        paddingLeft: 10 * PixelRatio.getFontScale(),
-        paddingTop: 10 * PixelRatio.getFontScale(),
     },
 });

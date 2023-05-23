@@ -66,8 +66,8 @@ export default function Equation({limit, added}) {
     const regular = () => {
         return (
             <>
-                <Variable number={getRemaining(limit)} word={"Calories " + placeholders[3]} />
                 <Variable number={added.length} word={"Items Logged"} />
+                <Variable number={getRemaining(limit)} word={"Calories " + placeholders[3]} />
             </>
         );
     }
@@ -75,8 +75,8 @@ export default function Equation({limit, added}) {
     const consumed = () => {
         return (
             <>
-                <Variable number={getCalories('Consumed')} word="Calories Consumed" />
                 <Variable number={getItems('Consumed')} word="Foods" />
+                <Variable number={getCalories('Consumed')} word="Calories Consumed" />
             </>
         );
     }
@@ -84,16 +84,14 @@ export default function Equation({limit, added}) {
     const burned = () => {
         return (
             <>
-                <Variable number={getCalories('Burned')} word="Calories Burned" />
                 <Variable number={getItems('Burned')} word="Exercises" />
+                <Variable number={getCalories('Burned')} word="Calories Burned" />
             </>
         );
     }
 
     const difference = () => {
-        return (
-            <Variable number={getCalories('Consumed') - getCalories('Burned')} word="Calorie Difference" />
-        );
+        return <Variable number={getCalories('Consumed') - getCalories('Burned')} word="Calorie Difference" />
     }
 
     const display = [regular, consumed, burned, difference];

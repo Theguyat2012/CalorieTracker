@@ -196,6 +196,11 @@ export default function App() {
               </>
               :
               <>
+                <View style={styles.center}>
+                  <Text style={[styles.white, styles.header]}>
+                    Settings
+                  </Text>
+                </View>
                 <Settings
                   added={added}
                   setAdded={setAdded}
