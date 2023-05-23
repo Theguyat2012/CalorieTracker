@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomWidth: 1,
         borderBottomColor: 'white',
-        backgroundColor: 'steelblue',
+        backgroundColor: 'royalblue',
         padding: 10 * PixelRatio.getFontScale(),
     },
 });

@@ -117,7 +117,7 @@ export default function Equation({limit, added}) {
 
 const styles = StyleSheet.create({
     equationWrapper: {
-        backgroundColor: 'steelblue',
+        backgroundColor: 'royalblue',
         borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
