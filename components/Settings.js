@@ -49,32 +49,32 @@ export default function Settings({
 }) {
     return (
         <>
-            <View>
-                <Text>
-                    Delete Your Calories
-                </Text>
+            <View style={styles.body}>
+                <Text style={styles.limitText}>Delete Calories</Text>
+                <View style={styles.body}>
+                    <Button title='Delete ALL' onPress={
+                        () => confirmRemoval(
+                            "Delete ALL",
+                            "reset your calories?",
+                            () => {reset(setAdded, addedKey, setData)}
+                        )}
+                    />
+                    <Button title='Delete CONSUMED' onPress={
+                        () => confirmRemoval(
+                            "Delete CONSUMED",
+                            "delete all of your consumed (-) calories?",
+                            () => {removeCalories(added, setAdded, addedKey, setData, consumedLabel)}
+                        )}
+                    />
+                    <Button title='Delete BURNED' onPress={
+                        () => confirmRemoval(
+                            "Delete BURNED",
+                            "delete all of your burned (+) calories?",
+                            () => {removeCalories(added, setAdded, addedKey, setData, burnedLabel)}
+                        )}
+                    />
+                </View>
             </View>
-            <Button title='Delete ALL' onPress={
-                () => confirmRemoval(
-                    "Delete ALL",
-                    "reset your calories?",
-                    () => {reset(setAdded, addedKey, setData)}
-                )}
-            />
-            <Button title='Delete CONSUMED' onPress={
-                () => confirmRemoval(
-                    "Delete CONSUMED",
-                    "delete all of your consumed (-) calories?",
-                    () => {removeCalories(added, setAdded, addedKey, setData, consumedLabel)}
-                )}
-            />
-            <Button title='Delete BURNED' onPress={
-                () => confirmRemoval(
-                    "Delete BURNED",
-                    "delete all of your burned (+) calories?",
-                    () => {removeCalories(added, setAdded, addedKey, setData, burnedLabel)}
-                )}
-            />
         </>
     );
 }
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 10,
         height: 55,
+        marginBottom: 10,
     },
     button: {
         verticalAlign: 'center',
@@ -97,5 +98,13 @@ const styles = StyleSheet.create({
         color: 'white',
         paddingLeft: 20,
         fontSize: 15 * PixelRatio.getFontScale(),
+    },
+    limitText: {
+        fontSize: 25 * PixelRatio.getFontScale(),
+        color: 'white',
+    },
+    body: {
+        padding: 10,
+        paddingHorizontal: 20,
     },
 });

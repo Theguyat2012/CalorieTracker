@@ -42,7 +42,7 @@ export default function Log({
     return (
         <View style={styles.body}>
             <TouchableOpacity style={styles.limitContainer} onPress={() => setInput('Limit')}>
-                <Text style={(styles.header, styles.limitText)}>Limit</Text>
+                <Text style={styles.limitText}>Limit</Text>
                 <Text style={styles.limitText}>{limit}</Text>
             </TouchableOpacity>
             <GestureHandlerRootView style={styles.alignCenter}>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     limitText: {
-        fontSize: 30 * PixelRatio.getFontScale(),
+        fontSize: 25 * PixelRatio.getFontScale(),
         color: 'white',
     },
     alignCenter: {
