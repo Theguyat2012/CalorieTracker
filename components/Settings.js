@@ -49,24 +49,29 @@ export default function Settings({
 }) {
     return (
         <>
-            <Button title='Reset Calories' onPress={
+            <View>
+                <Text>
+                    Delete Your Calories
+                </Text>
+            </View>
+            <Button title='Delete ALL' onPress={
                 () => confirmRemoval(
-                    "Reset Calories",
+                    "Delete ALL",
                     "reset your calories?",
                     () => {reset(setAdded, addedKey, setData)}
                 )}
             />
-            <Button title='Delete All CONSUMED' onPress={
+            <Button title='Delete CONSUMED' onPress={
                 () => confirmRemoval(
-                    "Delete All CONSUMED",
-                    "delete all of your consumed calories?",
+                    "Delete CONSUMED",
+                    "delete all of your consumed (-) calories?",
                     () => {removeCalories(added, setAdded, addedKey, setData, consumedLabel)}
                 )}
             />
-            <Button title='Delete All BURNED' onPress={
+            <Button title='Delete BURNED' onPress={
                 () => confirmRemoval(
-                    "Delete All BURNED",
-                    "delete all of your burned calories?",
+                    "Delete BURNED",
+                    "delete all of your burned (+) calories?",
                     () => {removeCalories(added, setAdded, addedKey, setData, burnedLabel)}
                 )}
             />
