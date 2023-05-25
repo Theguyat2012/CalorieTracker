@@ -25,7 +25,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.aleton.CalorieTracker"
+      "package": "com.aleton.CalorieTracker",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
