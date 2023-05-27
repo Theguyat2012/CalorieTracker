@@ -26,12 +26,12 @@ const limitKey = 'limit';
 const addedKey = 'added';
 
 // AdMob
-import mobileAds, { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
+// import mobileAds, { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-6986970147030097/3816960420"
+// const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-6986970147030097/3816960420"
 
-mobileAds()
-  .initialize()
+// mobileAds()
+//   .initialize()
 
 export default function App() {
   // Async Storage
@@ -135,10 +135,10 @@ export default function App() {
 
   return (
     <>
-      <SafeAreaView>
-        {/* <AppBar /> */}
+      <View>
+        <AppBar />
         <Title />
-      </SafeAreaView>
+      </View>
       {
         input ?
         <View style={[styles.containerInput, styles.backgroundBlack]}>
@@ -172,7 +172,7 @@ export default function App() {
         :
         <>
           <ScrollView showsVerticalScrollIndicator={false} style={styles.backgroundBlack}>
-            <BannerAd unitId={adUnitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
+            {/* <BannerAd unitId={adUnitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} /> */}
             {
               !settings ?
               <>

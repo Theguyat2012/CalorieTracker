@@ -18,7 +18,7 @@ const styles = StyleSheet.create ({
         height: statusBarHeight,
     },
     appBar: {
-        backgroundColor: '#3399FF',
+        backgroundColor: 'royalblue',
         height: appBarHeight,
     }
 });
