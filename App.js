@@ -249,5 +249,6 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 40 * PixelRatio.getFontScale(),
+    marginTop: 10 * PixelRatio.getFontScale(),
   },
 });
