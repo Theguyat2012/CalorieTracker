@@ -20,7 +20,7 @@ export default function Log({
         array.reverse();
 
         return (
-            array.reverse().map((element, index) =>
+            array.map((element, index) =>
                 <Calorie
                     key={element.id}
                     index={index}
