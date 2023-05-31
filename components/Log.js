@@ -16,11 +16,8 @@ export default function Log({
     setCaloriesPerServing,
 }) {
     const renderCalories = () => {
-        let array = added;
-        array.reverse();
-
         return (
-            array.map((element, index) =>
+            added.map((element, index) =>
                 <Calorie
                     key={element.id}
                     index={index}
@@ -38,7 +35,7 @@ export default function Log({
                     removeCalorie={removeCalorie}
                     type={element.type}
                 />
-            )
+            ).reverse()
         );
     }
 
