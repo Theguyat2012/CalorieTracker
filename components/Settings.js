@@ -51,7 +51,7 @@ export default function Settings({
         <>
             <View style={styles.body}>
                 <Text style={styles.limitText}>Delete Calories</Text>
-                <View style={styles.body}>
+                <View>
                     <Button title='Delete ALL' onPress={
                         () => confirmRemoval(
                             "Delete ALL",
@@ -82,9 +82,9 @@ export default function Settings({
 const styles = StyleSheet.create({
     wrapper: {
         alignItems: 'center',
-        paddingTop: 10,
-        height: 55,
-        marginBottom: 10,
+        paddingTop: 10 * PixelRatio.getFontScale(),
+        height: 55 * PixelRatio.getFontScale(),
+        marginBottom: 5 * PixelRatio.getFontScale(),
     },
     button: {
         verticalAlign: 'center',
