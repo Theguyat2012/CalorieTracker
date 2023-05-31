@@ -35,7 +35,7 @@ export default function Log({
                     removeCalorie={removeCalorie}
                     type={element.type}
                 />
-            )
+            ).reverse()
         );
     }
 
