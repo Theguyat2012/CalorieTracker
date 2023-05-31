@@ -50,66 +50,21 @@ export default function Equation({limit, added}) {
         return limit + remaining;
     }
 
-    const getItems = (type) => {
-        let items = 0;
-        let i = 0;
-
-        for(i=0; i<added.length; i++) {
-            if (added[i].type === type) {
-                items += 1;
-            }
-        }
-
-        return items;
-    }
-
-    const regular = () => {
-        return (
-            <>
-                <Variable number={added.length} word={"Items Logged"} />
-                <Variable number={getRemaining(limit)} word={"Calories " + placeholders[3]} />
-            </>
-        );
-    }
-
-    const consumed = () => {
-        return (
-            <>
-                <Variable number={getItems('Consumed')} word="Foods" />
-                <Variable number={getCalories('Consumed')} word="Calories Consumed" />
-            </>
-        );
-    }
-
-    const burned = () => {
-        return (
-            <>
-                <Variable number={getItems('Burned')} word="Exercises" />
-                <Variable number={getCalories('Burned')} word="Calories Burned" />
-            </>
-        );
-    }
-
-    const difference = () => {
-        return <Variable number={getCalories('Consumed') - getCalories('Burned')} word="Calorie Difference" />
-    }
-
-    const display = [regular, consumed, burned, difference];
-
-    const changeDisplay = () => {
-        if (displayIndex < display.length - 1) {
-            setDisplayIndex(displayIndex + 1);
-        } else {
-            setDisplayIndex(0);
-        }
-    }
-
     return (
-        <TouchableOpacity onPress={() => changeDisplay()}>
-            <View style={styles.equationWrapper}>
-                {display[displayIndex]()}
+        <View style={styles.equationWrapper}>
+            <View>
+                <Text style={styles.equationText}>Remaining</Text>
+                <Text style={styles.equationText}>Consumed</Text>
+                <Text style={styles.equationText}>Burned</Text>
+                <Text style={styles.equationText}>Difference</Text>
             </View>
-        </TouchableOpacity>
+            <View style={styles.alignItemsRight}>
+                <Text style={styles.equationText}>{getRemaining(limit)}</Text>
+                <Text style={styles.equationText}>{getCalories(placeholders[1])}</Text>
+                <Text style={styles.equationText}>{getCalories(placeholders[2])}</Text>
+                <Text style={styles.equationText}>{getCalories(placeholders[1]) - getCalories(placeholders[2])}</Text>
+            </View>
+        </View>
     );
 }
 
@@ -118,8 +73,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'royalblue',
         borderBottomWidth: 1,
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        padding: 25 * PixelRatio.getFontScale(),
+        justifyContent: 'space-between',
+        padding: 13 * PixelRatio.getFontScale(),
         borderTopWidth: 1,
         borderTopColor: 'white',
         borderBottomWidth: 1,
@@ -128,5 +83,8 @@ const styles = StyleSheet.create({
     equationText: {
         color: 'white',
         fontSize: 15 * PixelRatio.getFontScale(),
+    },
+    alignItemsRight: {
+        alignItems: 'flex-end',
     },
 });
