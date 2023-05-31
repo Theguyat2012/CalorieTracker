@@ -5,25 +5,6 @@ export default function Equation({limit, added}) {
     const [displayIndex, setDisplayIndex] = useState(0);
     const placeholders = ['Limit', 'Consumed', 'Burned', 'Remaining'];
 
-    const Variable = ({number, word, percent}) => {
-        return (
-            <View style={{ alignItems: 'center' }}>
-                <Text style={styles.equationText}>
-                    {percent ?
-                    <>
-                        {number.toFixed(0)}%
-                    </>
-                    :
-                    <>
-                        {number % 1 === 0 ? number : number.toFixed(2)}
-                    </>
-                    }
-                </Text>
-                <Text style={styles.equationText}>{word}</Text>
-            </View>
-        );
-    }
-
     const getCalories = (type) => {
         let value = 0;
         if (added) {
