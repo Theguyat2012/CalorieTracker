@@ -23,15 +23,15 @@ export default function PlusMinus({
         <View style={styles.body}>
             <NewCalorieButton
                 onPress={() => onPress('Burned')}
-                styleButton={styles.greenOperatorView}
-                styleOperator={styles.green}
-                operator="+"
-            />
-            <NewCalorieButton
-                onPress={() => onPress('Consumed')}
                 styleButton={styles.redOperatorView}
                 styleOperator={styles.red}
                 operator="-"
+            />
+            <NewCalorieButton
+                onPress={() => onPress('Consumed')}
+                styleButton={styles.greenOperatorView}
+                styleOperator={styles.green}
+                operator="+"
             />
         </View>
     );
