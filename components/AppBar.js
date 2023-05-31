@@ -6,7 +6,7 @@ const appBarHeight = 22;
 export default function AppBar() {
     return (
         <>
-            <StatusBar backgroundColor={"#3399FF"} translucent={true} />
+            <StatusBar backgroundColor={'royalblue'} translucent={true} />
             <View style={styles.appBar} />
         </>
     );
@@ -14,7 +14,7 @@ export default function AppBar() {
 
 const styles = StyleSheet.create ({
     statusbar: {
-        backgroundColor: '#3399FF',
+        backgroundColor: 'royalblue',
         height: statusBarHeight,
     },
     appBar: {
