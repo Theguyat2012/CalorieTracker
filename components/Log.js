@@ -17,7 +17,7 @@ export default function Log({
 }) {
     const renderCalories = () => {
         return (
-            added.map((element, index) =>
+            added.reverse().map((element, index) =>
                 <Calorie
                     key={element.id}
                     index={index}
