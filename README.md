@@ -3,7 +3,9 @@
 A simple lightweight react native app that helps with keeping track of your caloric intake. Calories in, calories out. No macro or micronutrient information provided. Useful for when you want to quickly log your meals and snacks without needing the details. Data is saved to your local device.
 
 Get the app:
+
 <a href="https://play.google.com/store/apps/details?id=com.aleton.CalorieTracker&pli=1">Google Play Store</a>
+
 <a href="https://expo.dev/@aleton/CalTrak">Expo</a>
 
 ## Recommendations
